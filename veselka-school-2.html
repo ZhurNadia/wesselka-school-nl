@@ -78,8 +78,8 @@ nav{position:fixed;inset:0 0 auto;z-index:200;height:64px;background:rgba(255,25
 .oval-frame{position:relative;width:100%;max-width:480px;margin:0 auto}
 .oval-frame::before{content:'';display:block;padding-top:75%}/* aspect ratio 4:3ish */
 .oval-inner{position:absolute;inset:0;border-radius:55% 45% 48% 52% / 52% 48% 55% 45%;
-  overflow:hidden;border:4px solid var(--yel);
-  box-shadow:0 12px 40px rgba(27,79,190,.22),0 0 0 8px rgba(245,200,66,.18);
+  overflow:hidden;border:3px solid rgba(245,200,66,.6);
+  box-shadow:0 20px 60px rgba(27,79,190,.18),0 8px 24px rgba(27,79,190,.1),0 0 0 6px rgba(245,200,66,.12),inset 0 0 30px rgba(27,79,190,.05);
   animation:morphBorder 8s ease-in-out infinite}
 @keyframes morphBorder{
   0%  {border-radius:55% 45% 48% 52% / 52% 48% 55% 45%}
@@ -95,24 +95,26 @@ nav{position:fixed;inset:0 0 auto;z-index:200;height:64px;background:rgba(255,25
 .oval-slide img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* Bubbles */
-.bubble{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:1.6rem;border:3px solid #fff;box-shadow:0 4px 16px rgba(27,79,190,.2);
-  animation:floatBubble 6s ease-in-out infinite;backdrop-filter:blur(2px)}
+.bubble{position:absolute;border-radius:50%;border:none;
+  animation:floatBubble 6s ease-in-out infinite;z-index:3}
 @keyframes floatBubble{
   0%,100%{transform:translateY(0) rotate(0deg)}
-  33%    {transform:translateY(-10px) rotate(4deg)}
-  66%    {transform:translateY(5px) rotate(-3deg)}
+  33%    {transform:translateY(-12px) rotate(5deg)}
+  66%    {transform:translateY(6px) rotate(-4deg)}
 }
-.b1{width:68px;height:68px;background:rgba(245,200,66,.85);top:-12px;left:-14px;animation-delay:0s}
-.b2{width:54px;height:54px;background:rgba(255,255,255,.92);bottom:10px;right:-18px;animation-delay:1.2s;font-size:1.3rem}
-.b3{width:44px;height:44px;background:rgba(27,79,190,.12);top:38%;right:-28px;animation-delay:2.4s;font-size:1rem}
-.b4{width:38px;height:38px;background:rgba(253,232,204,.9);bottom:-6px;left:10%;animation-delay:.7s;font-size:.9rem}
-.b5{width:52px;height:52px;background:rgba(255,255,255,.88);top:12px;right:14%;animation-delay:1.8s;font-size:1.2rem}
+.b1{width:60px;height:60px;background:#F5C842;top:-16px;left:-16px;
+  animation-delay:0s;opacity:.75;
+  box-shadow:0 6px 24px rgba(245,200,66,.3)}
+.b2{width:48px;height:48px;background:#005BBB;bottom:6px;right:-20px;
+  animation-delay:1.5s;opacity:.7;
+  box-shadow:0 6px 24px rgba(0,91,187,.25)}
 
 /* Oval nav dots */
-.oval-dots{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:5}
-.oval-dot{width:7px;height:7px;border-radius:50%;background:rgba(27,79,190,.25);border:none;cursor:pointer;padding:0;transition:.25s}
-.oval-dot.on{background:var(--blu);transform:scale(1.35)}
+.oval-dots{position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:5;
+  background:rgba(255,255,255,.7);backdrop-filter:blur(8px);padding:6px 10px;border-radius:20px;
+  box-shadow:0 2px 12px rgba(27,79,190,.08)}
+.oval-dot{width:20px;height:5px;border-radius:10px;background:rgba(27,79,190,.2);border:none;cursor:pointer;padding:0;transition:.3s}
+.oval-dot.on{background:var(--blu);width:32px}
 
 /* COMMON */
 .btn-p{display:inline-flex;align-items:center;gap:7px;background:var(--blu);color:#fff;
@@ -377,11 +379,8 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
           </div>
         </div>
         <!-- bubbles -->
-        <div class="bubble b1">🌈</div>
-        <div class="bubble b2">🇺🇦</div>
-        <div class="bubble b3">✨</div>
-        <div class="bubble b4">📚</div>
-        <div class="bubble b5">🎵</div>
+        <div class="bubble b1"></div>
+        <div class="bubble b2"></div>
         <!-- dots -->
         <div class="oval-dots" id="oval-dots">
           <button class="oval-dot on" onclick="ovalGo(0)"></button>
