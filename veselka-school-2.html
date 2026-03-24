@@ -270,7 +270,7 @@ section{padding:80px 4%}
 .cc-ico{width:38px;height:38px;background:var(--pch);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
 .cc.loc.active .cc-ico{background:var(--blu);color:#fff}
 .cc h3{font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:700;color:var(--blu2)}
-.cc p,.cc a{font-size:.85rem;color:var(--mut);line-height:1.6;text-decoration:none;display:block}
+.cc p,.cc a,.cc-addr{font-size:.85rem;color:var(--mut);line-height:1.6;text-decoration:none;display:block}
 .cc a:hover{color:var(--blu)}
 .map-wrap{border-radius:22px;overflow:hidden;border:1.5px solid var(--bdr);height:420px;background:var(--pch)}
 .map-wrap iframe{width:100%;height:100%;border:none;display:block}
@@ -291,7 +291,7 @@ footer{background:var(--blu2);color:rgba(255,255,255,.68);padding:52px 4% 28px}
 .ft-bot{max-width:1060px;margin:22px auto 0;display:flex;justify-content:space-between;align-items:center;font-size:.78rem;flex-wrap:wrap;gap:8px}
 
 /* TOAST / MODAL */
-.toast{position:fixed;bottom:28px;right:28px;background:var(--blu);color:#fff;
+.toast{position:fixed;bottom:86px;right:28px;background:var(--blu);color:#fff;
   padding:14px 22px;border-radius:13px;font-weight:700;font-size:.9rem;
   box-shadow:0 8px 28px rgba(82,114,168,.32);transform:translateY(90px);opacity:0;
   transition:all .4s cubic-bezier(.34,1.56,.64,1);z-index:999;display:flex;align-items:center;gap:9px}
@@ -305,6 +305,16 @@ footer{background:var(--blu2);color:rgba(255,255,255,.68);padding:52px 4% 28px}
   font-family:'Nunito',sans-serif;font-size:.9rem;outline:none;transition:.2s;background:var(--crm)}
 .inp:focus{border-color:var(--blu3);background:#fff;box-shadow:0 0 0 3px rgba(74,127,224,.1)}
 label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+
+/* SCROLL TO TOP */
+.scroll-top{position:fixed;bottom:28px;right:28px;width:46px;height:46px;border-radius:50%;
+  background:var(--blu);color:#fff;border:none;cursor:pointer;font-size:1.2rem;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(82,114,168,.3);
+  opacity:0;visibility:hidden;transform:translateY(20px);
+  transition:opacity .3s,visibility .3s,transform .3s,background .2s;z-index:100}
+.scroll-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+.scroll-top:hover{background:var(--blu2);transform:translateY(-2px)}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .fu{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
@@ -622,12 +632,12 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
       <h2 class="stitle" style="margin-bottom:24px" data-i18n="con_t">Зв'яжіться з нами</h2>
       <div class="cc loc active" id="cc-fr" onclick="switchMap('fr')">
         <div class="cc-head"><div class="cc-ico">📍</div><h3 data-i18n="l1">Локація Fransstraat</h3></div>
-        <a href="#">Fransstraat 16, 2274 AX Voorburg</a>
+        <span class="cc-addr">Fransstraat 16, 2274 AX Voorburg</span>
         <a href="tel:+31633652684">+31 6 33 65 26 84</a>
       </div>
       <div class="cc loc" id="cc-co" onclick="switchMap('co')">
         <div class="cc-head"><div class="cc-ico">📍</div><h3 data-i18n="l2">Локація Corbulo College</h3></div>
-        <a href="#">Van Tuyll van Serooskerkenstraat 2, 2273 CB Voorburg</a>
+        <span class="cc-addr">Van Tuyll van Serooskerkenstraat 2, 2273 CB Voorburg</span>
       </div>
       <div class="cc"><div class="cc-head"><div class="cc-ico">✉️</div><h3 data-i18n="con_em">Email</h3></div>
         <a href="mailto:oekraienseschool@gmail.com">oekraienseschool@gmail.com</a>
@@ -649,7 +659,7 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
 </main>
 <footer>
 <div class="ft-inner">
-<div><img src="data:image/webp;base64,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" alt="Wesselka" style="height:40px;width:auto;filter:brightness(0) invert(1);opacity:.82;margin-bottom:13px;display:block"><p style="font-size:.84rem;line-height:1.7;max-width:240px" data-i18n="ft_d">Українська суботня школа у Voorburg. Працюємо з 2011 року.</p>
+<div><img src="data:image/webp;base64,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" alt="Wesselka" style="height:40px;width:auto;opacity:.9;margin-bottom:13px;display:block"><p style="font-size:.84rem;line-height:1.7;max-width:240px" data-i18n="ft_d">Українська суботня школа у Voorburg. Працюємо з 2011 року.</p>
 <div class="ft-soc">
   <a href="https://www.facebook.com/OekraienseSchool" target="_blank">f</a>
   <a href="https://www.instagram.com/ua.school.wesselka/" target="_blank">ig</a>
@@ -674,7 +684,7 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
 </ul></div>
 </div>
 <div class="ft-bot">
-  <span data-i18n="ft_copy">© 2025 Oekraïense school Wesselka</span>
+  <span data-i18n="ft_copy">© 2026 Oekraïense school Wesselka</span>
   <span data-i18n="ft_made">Зроблено з ❤️ для дітей</span>
 </div>
 </footer>
@@ -989,7 +999,7 @@ uk:{
   fq5:'Якою мовою ведуться уроки?',fa5:'Виключно українською. Для початківців темп адаптується.',
   s_contact:'Контакти',con_t:"Зв'яжіться з нами",l1:'Локація Fransstraat',l2:'Локація Corbulo College',con_em:'Email',con_sm:'Соціальні мережі',
   map_hint:'👆 Натисніть на локацію зліва, щоб побачити на карті',
-  ft_d:'Українська суботня школа у Voorburg. Працюємо з 2011 року.',ft_sch:'Школа',ft_act:'Активності',ft_club:"Клуб «Читанка»",ft_adr:'Адреси шкіл',ft_copy:'© 2025 Oekraïense school Wesselka',ft_made:'Зроблено з ❤️ для дітей',
+  ft_d:'Українська суботня школа у Voorburg. Працюємо з 2011 року.',ft_sch:'Школа',ft_act:'Активності',ft_club:"Клуб «Читанка»",ft_adr:'Адреси шкіл',ft_copy:'© 2026 Oekraïense school Wesselka',ft_made:'Зроблено з ❤️ для дітей',
   toast_ok:'Реєстрацію підтверджено!',
 },
 nl:{
@@ -1034,7 +1044,7 @@ nl:{
   fq5:'In welke taal zijn de lessen?',fa5:'Uitsluitend Oekraïens. Voor beginners passen leraren het tempo aan.',
   s_contact:'Contact',con_t:'Neem contact op',l1:'Locatie Fransstraat',l2:'Locatie Corbulo College',con_em:'E-mail',con_sm:'Sociale media',
   map_hint:'👆 Klik op een locatie links om die op de kaart te zien',
-  ft_d:'Oekraïense zaterdagschool in Voorburg. Actief sinds 2011.',ft_sch:'School',ft_act:'Activiteiten',ft_club:'Club "Chytanka"',ft_adr:'Schooladressen',ft_copy:'© 2025 Oekraïense school Wesselka',ft_made:'Gemaakt met ❤️ voor kinderen',
+  ft_d:'Oekraïense zaterdagschool in Voorburg. Actief sinds 2011.',ft_sch:'School',ft_act:'Activiteiten',ft_club:'Club "Chytanka"',ft_adr:'Schooladressen',ft_copy:'© 2026 Oekraïense school Wesselka',ft_made:'Gemaakt met ❤️ voor kinderen',
   toast_ok:'Aanmelding bevestigd!',
 },
 en:{
@@ -1079,7 +1089,7 @@ en:{
   fq5:'What language are lessons taught in?',fa5:'Exclusively Ukrainian. Teachers adapt pace for beginners.',
   s_contact:'Contact',con_t:'Get in touch',l1:'Location Fransstraat',l2:'Location Corbulo College',con_em:'Email',con_sm:'Social media',
   map_hint:'👆 Click a location on the left to see it on the map',
-  ft_d:'Ukrainian Saturday School in Voorburg. Active since 2011.',ft_sch:'School',ft_act:'Activities',ft_club:'"Chytanka" Book Club',ft_adr:'School addresses',ft_copy:'© 2025 Oekraïense school Wesselka',ft_made:'Made with ❤️ for children',
+  ft_d:'Ukrainian Saturday School in Voorburg. Active since 2011.',ft_sch:'School',ft_act:'Activities',ft_club:'"Chytanka" Book Club',ft_adr:'School addresses',ft_copy:'© 2026 Oekraïense school Wesselka',ft_made:'Made with ❤️ for children',
   toast_ok:'Registration confirmed!',
 }
 };
@@ -1101,6 +1111,18 @@ function setLang(l){
 loadEvents();
 loadGallery();
 loadSaturdays();
+
+</script>
+<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">↑</button>
+<script>
+(function(){
+  const b=document.getElementById('scroll-top');
+  window.addEventListener('scroll',()=>{
+    if(window.scrollY>400)b.classList.add('show');
+    else b.classList.remove('show');
+  },{passive:true});
+  b.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+})();
 </script>
 </body>
 </html>
