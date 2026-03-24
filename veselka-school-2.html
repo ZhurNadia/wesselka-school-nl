@@ -37,12 +37,24 @@ body{font-family:'Nunito',sans-serif;background:var(--crm);color:var(--txt);over
 nav{position:fixed;inset:0 0 auto;z-index:200;height:64px;background:rgba(255,251,244,.97);
   backdrop-filter:blur(12px);border-bottom:2px solid var(--yel);
   display:flex;align-items:center;justify-content:space-between;padding:0 4%;
-  box-shadow:0 2px 16px rgba(27,79,190,.08)}
+  box-shadow:0 2px 16px rgba(27,79,190,.08);overflow:visible}
 .nav-logo img{height:44px;width:auto;display:block}
 .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+.nav-links li{position:relative}
+.nav-links li::before{
+  content:'';position:absolute;top:-2px;left:4px;
+  width:24px;height:24px;border-radius:50%;background:var(--yel);
+  transform:scale(0);transform-origin:top left;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+  pointer-events:none;z-index:0;
+}
+.nav-links li:hover::before{transform:scale(1)}
+.nav-links li:last-child::before{display:none}
 .nav-links a{text-decoration:none;color:var(--txt);font-weight:700;font-size:.85rem;
-  padding:7px 12px;border-radius:8px;transition:.2s}
-.nav-links a:hover{background:var(--pch);color:var(--blu)}
+  padding:7px 12px;border-radius:8px;transition:transform .3s ease, color .2s ease;
+  position:relative;z-index:1;display:inline-block}
+.nav-links a:hover{color:var(--blu);transform:translateX(8px)}
+.nav-links .nav-cta:hover{transform:none}
 .nav-cta{background:var(--blu)!important;color:#fff!important;border-radius:9px!important;padding:8px 16px!important}
 .nav-cta:hover{background:var(--blu2)!important}
 .nav-langs{display:flex;gap:5px;margin-left:12px}
