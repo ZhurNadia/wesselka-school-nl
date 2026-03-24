@@ -95,7 +95,15 @@ nav{position:fixed;inset:0 0 auto;z-index:200;height:64px;background:rgba(255,25
   line-height:1.12;color:var(--blu2);margin-bottom:20px}
 .hero h1 em{font-style:normal;color:var(--hon)}
 .hero-desc{font-size:1rem;color:var(--mut);line-height:1.7;margin-bottom:32px;max-width:460px}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.hero-link{position:relative;display:inline-block;text-decoration:none;color:var(--txt);
+  font-weight:700;font-size:.95rem;padding:7px 12px;transition:transform .3s ease, color .2s ease}
+.hero-link::before{content:'';position:absolute;top:-2px;left:4px;
+  width:24px;height:24px;border-radius:50%;background:var(--yel);opacity:.45;
+  transform:scale(0);transform-origin:top left;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);pointer-events:none}
+.hero-link:hover::before{transform:scale(1)}
+.hero-link:hover{color:var(--blu);transform:translateX(8px)}
 .hero-stats{display:flex;gap:20px;margin-top:36px;flex-wrap:wrap}
 .stat-num{font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;color:var(--blu);line-height:1}
 .stat-lbl{font-size:.72rem;color:var(--mut);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
@@ -371,7 +379,8 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
   .sat-day{width:72px}
   .hero h1{font-size:1.85rem}
   .hero-btns{flex-direction:column}
-  .hero-btns .btn-p,.hero-btns .btn-s{width:100%;justify-content:center}
+  .hero-btns .btn-p{width:100%;justify-content:center}
+  .hero-link{justify-content:center;text-align:center}
   .oval-frame{max-width:300px}
 }
 .sheet-loading{font-size:.9rem;font-weight:600;color:var(--mut);text-align:center;padding:40px;animation:pulse 1.5s ease-in-out infinite}
@@ -448,7 +457,7 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
       <p class="hero-desc" data-i18n="hero_desc">Українська суботня школа «Веселка» — простір для дітей від 3 до 16 років, де мова, культура та дружба стають частиною кожної суботи.</p>
       <div class="hero-btns">
         <a href="#register" class="btn-p" data-i18n="hero_cta1">✏️ Записатися до школи</a>
-        <a href="#about" class="btn-s" data-i18n="hero_cta2">Дізнатись більше</a>
+        <a href="#about" class="hero-link" data-i18n="hero_cta2">Дізнатись більше</a>
       </div>
       <div class="hero-stats">
         <div><div class="stat-num">500+</div><div class="stat-lbl" data-i18n="stat1">Випускників</div></div>
