@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -n '</div>$' \"/Users/Nadia/Documents/Documents/ШКОЛА Весселка/website_Wesselka/veselka-school-2.html\")",
+      "Bash(grep -n '^\\\\s*</div>$' \"/Users/Nadia/Documents/Documents/ШКОЛА Весселка/website_Wesselka/veselka-school-2.html\")"
+    ]
+  }
+}

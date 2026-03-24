@@ -175,11 +175,11 @@ section{padding:80px 4%}
 /* ABOUT */
 .about{background:#fff}
 .about-inner{display:grid;grid-template-columns:1fr;gap:40px;align-items:start;max-width:1160px;margin:0 auto}
-.about-mission{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px;grid-column:1/-1}
+.about-mission{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px;grid-column:1/-1}
 .mission-card{background:#fff;border-radius:16px;padding:24px 20px;border:1.5px solid var(--bdr);text-align:center}
 .mission-card h3{font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;color:var(--blu);margin:8px 0}
 .mission-card p{color:var(--mut);font-size:.9rem;line-height:1.6}
-.about-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;grid-column:1/-1}
+.about-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;grid-column:1/-1}
 .ac{background:var(--crm);border-radius:18px;padding:24px;border:1.5px solid var(--bdr);transition:.3s}
 .ac.exp{cursor:pointer}.ac.exp:hover{transform:translateY(-4px);box-shadow:var(--shw);border-color:var(--yel)}
 .ac h3{font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:700;color:var(--blu2);margin-bottom:6px}
@@ -370,7 +370,7 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
   .gal-item:first-child{grid-column:span 2;grid-row:span 1}
   .ev-grid{grid-template-columns:1fr}
   .about-cards{grid-template-columns:1fr}
-  .about-mission{grid-template-columns:1fr}
+  .about-mission{grid-template-columns:1fr 1fr}
   .ac.accent{grid-column:span 1}
 }
 @media(max-width:520px){
@@ -523,6 +523,11 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
         <h3 data-i18n="m3t">Наш метод</h3>
         <p data-i18n="m3s">Ніколи не пізно вивчити українську мову. У різному віці ми застосовуємо різну методологію і враховуємо психологічні особливості певного віку. Але правильна мотивація залишається найважливішою.</p>
       </div>
+      <div class="mission-card" style="background:var(--blu);border-color:var(--blu)">
+        <div class="ac-icon">🏆</div>
+        <h3 data-i18n="aw_t" style="color:var(--yel)">Нагороджені грамотою</h3>
+        <p data-i18n="aw_d" style="color:rgba(255,255,255,.8)">Товариством «Україна–Світ» за участь у відзначенні 150-річчя Лесі Українки та проекті «Тарас Шевченко єднає народи»</p>
+      </div>
     </div>
     <div class="fu" style="text-align:center">
       <a href="#register" class="btn-p" data-i18n="about_cta">Записати дитину →</a>
@@ -549,11 +554,6 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
           <p data-i18n="c2p4">Ласкаво запрошуємо всіх охочих!</p>
         </div>
         <span class="ac-tog" data-i18n="read_more">Читати більше ▾</span>
-      </div>
-      <div class="ac accent">
-        <div class="ac-icon">🏆</div>
-        <h3 data-i18n="aw_t">Нагороджені грамотою</h3>
-        <p data-i18n="aw_d">Товариством «Україна–Світ» за участь у відзначенні 150-річчя Лесі Українки та проекті «Тарас Шевченко єднає народи»</p>
       </div>
     </div>
   </div>
