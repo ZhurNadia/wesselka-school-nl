@@ -170,12 +170,16 @@ section{padding:80px 4%}
 .stag::before{content:'';display:block;width:20px;height:2px;background:var(--hon);border-radius:2px}
 .stitle{font-family:'Nunito',sans-serif;font-size:clamp(1.6rem,3vw,2.5rem);font-weight:800;
   color:var(--blu2);line-height:1.2;margin-bottom:14px}
-.sdesc{font-size:1rem;color:var(--mut);line-height:1.7;max-width:540px}
+.sdesc{font-size:1rem;color:var(--mut);line-height:1.7;max-width:100%}
 
 /* ABOUT */
 .about{background:#fff}
-.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;max-width:1160px;margin:0 auto}
-.about-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.about-inner{display:grid;grid-template-columns:1fr;gap:40px;align-items:start;max-width:1160px;margin:0 auto}
+.about-mission{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px;grid-column:1/-1}
+.mission-card{background:#fff;border-radius:16px;padding:24px 20px;border:1.5px solid var(--bdr);text-align:center}
+.mission-card h3{font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;color:var(--blu);margin:8px 0}
+.mission-card p{color:var(--mut);font-size:.9rem;line-height:1.6}
+.about-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;grid-column:1/-1}
 .ac{background:var(--crm);border-radius:18px;padding:24px;border:1.5px solid var(--bdr);transition:.3s}
 .ac.exp{cursor:pointer}.ac.exp:hover{transform:translateY(-4px);box-shadow:var(--shw);border-color:var(--yel)}
 .ac h3{font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:700;color:var(--blu2);margin-bottom:6px}
@@ -186,7 +190,7 @@ section{padding:80px 4%}
 .ac.open .ac-more{display:block}
 .ac-tog{display:inline-block;margin-top:10px;font-size:.72rem;font-weight:800;color:var(--blu);text-transform:uppercase;letter-spacing:.06em}
 .ac.open .ac-tog{color:var(--hon)}
-.ac.accent{background:var(--blu);border-color:var(--blu);grid-column:span 2}
+.ac.accent{background:var(--blu);border-color:var(--blu)}
 .ac.accent h3{color:var(--yel)}.ac.accent p{color:rgba(255,255,255,.8);font-size:.84rem}
 
 /* SCHEDULE */
@@ -344,7 +348,7 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
 @media(max-width:1000px){
   .hero-inner{grid-template-columns:1fr}
   .hero-visual{max-width:420px;margin:0 auto}
-  .about-inner{grid-template-columns:1fr;gap:40px}
+
   .reg-inner{grid-template-columns:1fr;gap:40px}
   .con-inner{grid-template-columns:1fr;gap:40px}
   .ft-inner{grid-template-columns:1fr 1fr}
@@ -366,6 +370,7 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
   .gal-item:first-child{grid-column:span 2;grid-row:span 1}
   .ev-grid{grid-template-columns:1fr}
   .about-cards{grid-template-columns:1fr}
+  .about-mission{grid-template-columns:1fr}
   .ac.accent{grid-column:span 1}
 }
 @media(max-width:520px){
@@ -500,8 +505,26 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
     <div class="fu">
       <div class="stag" data-i18n="s_about">Про нас</div>
       <h2 class="stitle" data-i18n="about_title">Школа, де кожна дитина — вдома</h2>
-      <p class="sdesc" data-i18n="about_desc">Українська суботня школа «Веселка» відкрита у 2011 р. Наша мета — підтримати маленького українця, заохотити, навчити, розвинути, допомогти йому відкрити власний світ. Навчаємо мови, культури, історії, образотворчого та традиційного мистецтва, співу.</p>
-      <br><br>
+      <p class="sdesc" data-i18n="about_desc">Школу «Веселка» засновано у 2011 р. Фондом «Україна-Культураліз» (Stichting Oekraïne Culturalis) під патронатом Посольства України для дітей українців у Нідерландах. Заняття — щосуботи у двох локаціях: Fransstraat 16 (11:20–14:20) та Corbulo College (11:00–14:00). Навчаємо мови, культури, історії, образотворчого та традиційного мистецтва, співу у групах за віком та рівнем.</p>
+    </div>
+    <div class="about-mission fu">
+      <div class="mission-card">
+        <div class="ac-icon">🎯</div>
+        <h3 data-i18n="m1t">Наша мета</h3>
+        <p data-i18n="m1s">Підтримати маленького українця, заохотити, навчити, розвинути, допомогти зростити гордість за своє коріння.</p>
+      </div>
+      <div class="mission-card">
+        <div class="ac-icon">💛</div>
+        <h3 data-i18n="m2t">Наші цінності</h3>
+        <p data-i18n="m2s">Розвинути цінності дружби, почуття особистості і поваги до культурного та історичного минулого України.</p>
+      </div>
+      <div class="mission-card">
+        <div class="ac-icon">📖</div>
+        <h3 data-i18n="m3t">Наш метод</h3>
+        <p data-i18n="m3s">Ніколи не пізно вивчити українську мову. У різному віці ми застосовуємо різну методологію і враховуємо психологічні особливості певного віку. Але правильна мотивація залишається найважливішою.</p>
+      </div>
+    </div>
+    <div class="fu" style="text-align:center">
       <a href="#register" class="btn-p" data-i18n="about_cta">Записати дитину →</a>
     </div>
     <div class="about-cards fu">
@@ -1020,8 +1043,11 @@ uk:{
   hero_cta1:'✏️ Записатися до школи',hero_cta2:'Дізнатись більше',
   stat1:'Випускників',stat2:'Років роботи',stat3:'Учнів зараз',stat4:'Локації',
   s_about:'Про нас',about_title:'Школа, де кожна дитина — вдома',
-  about_desc:"Українська суботня школа «Веселка» відкрита у 2011 р. Наша мета — підтримати маленького українця, заохотити, навчити, розвинути, допомогти йому відкрити власний світ. Навчаємо мови, культури, історії, образотворчого та традиційного мистецтва, співу.",
+  about_desc:"Школу «Веселка» засновано у 2011 р. Фондом «Україна-Культураліз» (Stichting Oekraïne Culturalis) під патронатом Посольства України для дітей українців у Нідерландах. Заняття — щосуботи у двох локаціях: Fransstraat 16 (11:20–14:20) та Corbulo College (11:00–14:00). Навчаємо мови, культури, історії, образотворчого та традиційного мистецтва, співу у групах за віком та рівнем.",
   about_cta:'Записати дитину →',
+  m1t:'Наша мета',m1s:'Підтримати маленького українця, заохотити, навчити, розвинути, допомогти зростити гордість за своє коріння.',
+  m2t:'Наші цінності',m2s:'Розвинути цінності дружби, почуття особистості і поваги до культурного та історичного минулого України.',
+  m3t:'Наш метод',m3s:'Ніколи не пізно вивчити українську мову. У різному віці ми застосовуємо різну методологію і враховуємо психологічні особливості певного віку. Але правильна мотивація залишається найважливішою.',
   c1t:'Мова, культура та творчість',c1s:'Мова, читання, письмо, спів, театр, мистецтво — для всіх рівнів і вікових груп.',
   c1p1:'Розвиток рідної мови та творчих здібностей через пісні, вірші та історію рідного краю.',
   c1l1:'Традиційні свята:',c1p2:'свята Матері, осені, Андрія, Миколая, Маланки + коляда, спортивні заходи, літнє BBQ.',
@@ -1065,7 +1091,10 @@ nl:{
   hero_cta1:'✏️ Aanmelden',hero_cta2:'Meer informatie',
   stat1:'Afgestudeerden',stat2:'Jaar actief',stat3:'Leerlingen nu',stat4:'Locaties',
   s_about:'Over ons',about_title:'Een school waar elk kind thuis is',
-  about_desc:'De Oekraïense zaterdagschool "Wesselka" is opgericht in 2011. Ons doel is elk Oekraïens kind te ondersteunen, te stimuleren en te helpen hun eigen wereld te ontdekken. We geven les in taal, cultuur, geschiedenis, beeldende kunst en zang.',
+  about_desc:'De school "Wesselka" is in 2011 opgericht door Stichting Oekraïne Culturalis onder patronaat van de Ambassade van Oekraïne, voor kinderen van Oekraïners in Nederland. Lessen vinden elke zaterdag plaats op twee locaties: Fransstraat 16 (11:20–14:20) en Corbulo College (11:00–14:00). We geven les in taal, cultuur, geschiedenis, beeldende en traditionele kunst en zang in groepen op leeftijd en niveau.',
+  m1t:'Ons doel',m1s:'Elk Oekraïens kind ondersteunen, aanmoedigen, onderwijzen en helpen trots te zijn op hun wortels.',
+  m2t:'Onze waarden',m2s:'De waarden van vriendschap, persoonlijkheid en respect voor het cultureel en historisch verleden van Oekraïne ontwikkelen.',
+  m3t:'Onze methode',m3s:'Het is nooit te laat om Oekraïens te leren. Op elke leeftijd passen we een andere methodologie toe en houden we rekening met de psychologische kenmerken van die leeftijd. Maar de juiste motivatie blijft het belangrijkst.',
   about_cta:'Kind aanmelden →',
   c1t:'Taal, cultuur & creativiteit',c1s:'Taal, lezen, schrijven, zang, theater, kunst — voor alle niveaus en leeftijden.',
   c1p1:'Taalontwikkeling en creativiteit via liederen, gedichten en de geschiedenis van Oekraïne.',
@@ -1110,7 +1139,10 @@ en:{
   hero_cta1:'✏️ Enroll now',hero_cta2:'Learn more',
   stat1:'Graduates',stat2:'Years active',stat3:'Students now',stat4:'Locations',
   s_about:'About us',about_title:'A school where every child feels at home',
-  about_desc:'Ukrainian Saturday School "Veselka" was founded in 2011. Our goal is to support, encourage, teach and help every Ukrainian child discover their own world. We teach Ukrainian language, culture, history, visual and traditional arts, and singing.',
+  about_desc:'School "Veselka" was founded in 2011 by the Stichting Oekraïne Culturalis under the patronage of the Embassy of Ukraine, for children of Ukrainians in the Netherlands. Classes are held every Saturday at two locations: Fransstraat 16 (11:20–14:20) and Corbulo College (11:00–14:00). We teach language, culture, history, visual and traditional arts, and singing in groups by age and level.',
+  m1t:'Our mission',m1s:'To support, encourage, teach, and help every Ukrainian child grow proud of their roots.',
+  m2t:'Our values',m2s:'Developing the values of friendship, a sense of individuality, and respect for Ukraine\'s cultural and historical past.',
+  m3t:'Our method',m3s:'It\'s never too late to learn Ukrainian. At different ages we apply different methodologies and consider the psychological characteristics of each age. But the right motivation remains the most important.',
   about_cta:'Enroll a child →',
   c1t:'Language, culture & creativity',c1s:'Language, reading, writing, singing, theatre, art — for all levels and ages.',
   c1p1:'Language skills and creativity develop through songs, poems and the history of Ukraine.',
