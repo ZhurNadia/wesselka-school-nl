@@ -188,10 +188,18 @@ section{padding:80px 4%}
 .sch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .sch-item{background:#fff;border-radius:16px;padding:20px;border:1.5px solid var(--bdr);transition:.3s}
 .sch-item:hover{border-color:var(--blu3);box-shadow:var(--sh)}
-.sch-time{font-family:'Nunito',sans-serif;font-size:1.5rem;font-weight:700;color:var(--blu);line-height:1;margin-bottom:4px}
-.sch-lbl{font-size:.74rem;color:var(--mut);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
-.sch-grp{display:inline-block;background:var(--pch);color:var(--hon);font-size:.74rem;font-weight:700;padding:3px 10px;border-radius:50px}
-.sat-cal{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.sch-time{font-family:'Nunito',sans-serif;font-size:1.5rem;font-weight:700;color:var(--blu);line-height:1;margin-bottom:6px}
+.sch-lbl{font-size:.74rem;color:var(--mut);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
+.sch-grp{color:var(--hon);font-size:.72rem;font-weight:700}
+.sat-cal{display:flex;flex-direction:column;gap:6px;margin-top:18px}
+.sat-month{display:flex;align-items:stretch;gap:0}
+.sat-month-name{width:90px;flex-shrink:0;font-size:.72rem;font-weight:800;color:var(--mut);
+  text-transform:uppercase;letter-spacing:.04em;display:flex;align-items:center}
+.sat-days{display:flex;gap:5px;flex-wrap:wrap}
+.sat-day{border-radius:8px;padding:5px 6px;width:88px;min-height:44px;text-align:center;border:1.5px solid;
+  display:flex;flex-direction:column;align-items:center;justify-content:center}
+.sat-day-num{font-size:.82rem;font-weight:800}
+.sat-day-lbl{font-size:.58rem;font-weight:700;line-height:1.2;margin-top:2px;white-space:normal;word-break:break-word;text-align:center}
 .sat-legend{display:flex;gap:14px;margin-top:14px;flex-wrap:wrap}
 .sat-legend span{display:flex;align-items:center;gap:5px;font-size:.75rem;color:var(--mut)}
 .sat-legend i{width:12px;height:12px;border-radius:3px;display:inline-block;border:1.5px solid}
@@ -346,6 +354,9 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
   .gal-item:first-child{grid-column:span 1;grid-row:span 1}
   .ft-inner{grid-template-columns:1fr}
   .sch-grid{grid-template-columns:1fr 1fr}
+  .sat-month{flex-direction:column;gap:4px}
+  .sat-month-name{width:auto;margin-bottom:2px}
+  .sat-day{width:72px}
   .hero h1{font-size:1.85rem}
   .hero-btns{flex-direction:column}
   .hero-btns .btn-p,.hero-btns .btn-s{width:100%;justify-content:center}
@@ -519,20 +530,20 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
       </div>
     </div>
     <div id="fr" class="sch-grid">
-      <div class="sch-item fu"><div class="sch-time">11:20</div><div class="sch-lbl" data-i18n="les">Урок 1</div><div class="sch-grp">→ 11:55</div></div>
-      <div class="sch-item fu"><div class="sch-time">12:05</div><div class="sch-lbl" data-i18n="les">Урок 2</div><div class="sch-grp">→ 12:40</div></div>
-      <div class="sch-item fu"><div class="sch-time">13:00</div><div class="sch-lbl" data-i18n="les">Урок 3</div><div class="sch-grp">→ 13:35</div></div>
-      <div class="sch-item fu"><div class="sch-time">13:45</div><div class="sch-lbl" data-i18n="les">Урок 4</div><div class="sch-grp">→ 14:20</div></div>
+      <div class="sch-item fu"><div class="sch-lbl" data-i18n="les">Урок 1</div><div class="sch-time">11:20</div><div class="sch-grp">→ 11:55</div></div>
+      <div class="sch-item fu"><div class="sch-lbl" data-i18n="les">Урок 2</div><div class="sch-time">12:05</div><div class="sch-grp">→ 12:40</div></div>
+      <div class="sch-item fu"><div class="sch-lbl" data-i18n="les">Урок 3</div><div class="sch-time">13:00</div><div class="sch-grp">→ 13:35</div></div>
+      <div class="sch-item fu"><div class="sch-lbl" data-i18n="les">Урок 4</div><div class="sch-time">13:45</div><div class="sch-grp">→ 14:20</div></div>
     </div>
     <div id="co" class="sch-grid" style="display:none">
-      <div class="sch-item fu"><div class="sch-time">11:00</div><div class="sch-lbl" data-i18n="les">Урок 1</div><div class="sch-grp">→ 11:35</div></div>
-      <div class="sch-item fu"><div class="sch-time">11:45</div><div class="sch-lbl" data-i18n="les">Урок 2</div><div class="sch-grp">→ 12:20</div></div>
-      <div class="sch-item fu"><div class="sch-time">12:40</div><div class="sch-lbl" data-i18n="les">Урок 3</div><div class="sch-grp">→ 13:15</div></div>
-      <div class="sch-item fu"><div class="sch-time">13:25</div><div class="sch-lbl" data-i18n="les">Урок 4</div><div class="sch-grp">→ 14:00</div></div>
+      <div class="sch-item fu"><div class="sch-lbl" data-i18n="les">Урок 1</div><div class="sch-time">11:00</div><div class="sch-grp">→ 11:35</div></div>
+      <div class="sch-item fu"><div class="sch-lbl" data-i18n="les">Урок 2</div><div class="sch-time">11:45</div><div class="sch-grp">→ 12:20</div></div>
+      <div class="sch-item fu"><div class="sch-lbl" data-i18n="les">Урок 3</div><div class="sch-time">12:40</div><div class="sch-grp">→ 13:15</div></div>
+      <div class="sch-item fu"><div class="sch-lbl" data-i18n="les">Урок 4</div><div class="sch-time">13:25</div><div class="sch-grp">→ 14:00</div></div>
     </div>
     <p id="loc-disp" style="margin-top:20px;color:var(--mut);font-size:.85rem">📍 <strong>Fransstraat 16</strong>, 2274 AX Voorburg</p>
     <div style="margin-top:44px" class="fu">
-      <div class="stag" style="margin-bottom:13px" data-i18n="sat_lbl">Суботи 2026</div>
+      <div class="stag" style="margin-bottom:13px" data-i18n="sat_lbl">Навчальні суботи 2026</div>
       <div class="sat-cal" id="sat-cal"></div>
       <div class="sat-legend">
         <span><i style="background:#fde8cc;border-color:#f0b429"></i><span data-i18n="leg_v">Канікули</span></span>
@@ -923,17 +934,40 @@ const defaultSats=[
 ];
 const stc={n:{bg:'#fff',b:'var(--bdr)',dc:'var(--txt)',lc:'var(--mut)'},v:{bg:'#fde8cc',b:'#f0b429',dc:'#a06000',lc:'#c47a00'},h:{bg:'#e8f0fe',b:'#7a9ac4',dc:'#5272a8',lc:'#5272a8'},s:{bg:'#e8fce8',b:'#2a7e4f',dc:'#1a5c30',lc:'#1a5c30'}};
 
+const monthNames={
+  uk:['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'],
+  nl:['Jan','Feb','Mrt','Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'],
+  en:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+};
 function renderSaturdays(sats) {
   const sc = document.getElementById('sat-cal');
   if (!sc) return;
   sc.innerHTML = '';
+  /* Group by month — date format is DD/MM */
+  const groups = {};
   sats.forEach(s => {
-    const c = stc[s.t] || stc.n;
-    const label = locCol(s, 'l') || s.l || '';
-    const el = document.createElement('div');
-    el.style.cssText = `background:${c.bg};border:1.5px solid ${c.b};border-radius:10px;padding:7px 12px;min-width:88px;text-align:center;`;
-    el.innerHTML = `<div style="font-size:.85rem;font-weight:800;color:${c.dc}">${s.d}</div>` + (label ? `<div style="font-size:.62rem;font-weight:700;color:${c.lc};margin-top:2px;line-height:1.2">${label}</div>` : '');
-    sc.appendChild(el);
+    const parts = s.d.split('/');
+    const m = parseInt(parts[1], 10);
+    if (!groups[m]) groups[m] = [];
+    groups[m].push(s);
+  });
+  Object.keys(groups).sort((a,b)=>a-b).forEach(m => {
+    const row = document.createElement('div');
+    row.className = 'sat-month';
+    const mName = (monthNames[lang] || monthNames.uk)[parseInt(m,10)-1];
+    row.innerHTML = `<div class="sat-month-name">${mName}</div><div class="sat-days"></div>`;
+    const daysEl = row.querySelector('.sat-days');
+    groups[m].forEach(s => {
+      const c = stc[s.t] || stc.n;
+      const label = locCol(s, 'l') || s.l || '';
+      const day = s.d.split('/')[0].replace(/^0/,'');
+      const el = document.createElement('div');
+      el.className = 'sat-day';
+      el.style.cssText = `background:${c.bg};border-color:${c.b}`;
+      el.innerHTML = `<div class="sat-day-num" style="color:${c.dc}">${day}</div>` + (label ? `<div class="sat-day-lbl" style="color:${c.lc}">${label}</div>` : '');
+      daysEl.appendChild(el);
+    });
+    sc.appendChild(row);
   });
 }
 
@@ -980,7 +1014,7 @@ uk:{
   aw_t:'Нагороджені грамотою',aw_d:"Товариством «Україна–Світ» за участь у відзначенні 150-річчя Лесі Українки та проекті «Тарас Шевченко єднає народи»",
   read_more:'Читати більше ▾',read_less:'Згорнути ▴',
   s_schedule:'Розклад',sch_t:'Заняття щосуботи',les:'Урок',
-  sat_lbl:'Суботи 2026',leg_v:'Канікули',leg_h:'Свято',leg_s:'Особлива подія',leg_n:'Навчання',
+  sat_lbl:'Навчальні суботи 2026',leg_v:'Канікули',leg_h:'Свято',leg_s:'Особлива подія',leg_n:'Навчання',
   s_events:'Заходи',ev_t:'Найближчі події',ev_d:'Тематичні свята, концерти, майстер-класи та проекти — записуйтесь заздалегідь.',
   evt1:'Свято',evn1:'Великодній ярмарок',evt2:'Майстер-клас',evn2:'Писанкарство: традиції та техніки',evt3:'Концерт',evn3:"Весняний концерт «Квітуча Україна»",ev_btn:'Записатись →',
   mod_t:'Реєстрація на захід',mod_n:"Ім'я та прізвище",mod_q:'Кількість',mod_btn:'Підтвердити реєстрацію ✓',
@@ -1025,7 +1059,7 @@ nl:{
   aw_t:'Onderscheiden met een oorkonde',aw_d:'Door de vereniging "Oekraïne–Wereld" voor deelname aan de herdenking van Lesia Oekraïnka en het project "Taras Shevchenko verbindt volkeren".',
   read_more:'Lees meer ▾',read_less:'Inklappen ▴',
   s_schedule:'Rooster',sch_t:'Lessen elke zaterdag',les:'Les',
-  sat_lbl:'Zaterdagen 2026',leg_v:'Vakantie',leg_h:'Feestdag',leg_s:'Bijzonder',leg_n:'School',
+  sat_lbl:'Schoolzaterdagen 2026',leg_v:'Vakantie',leg_h:'Feestdag',leg_s:'Bijzonder',leg_n:'School',
   s_events:'Evenementen',ev_t:'Komende evenementen',ev_d:'Feesten, concerten, workshops en projecten — meld je vroegtijdig aan.',
   evt1:'Feest',evn1:'Paasmarkt',evt2:'Workshop',evn2:'Pysanka: tradities & technieken',evt3:'Concert',evn3:'Lenteconcert "Bloeiend Oekraïne"',ev_btn:'Aanmelden →',
   mod_t:'Aanmelding evenement',mod_n:'Naam en achternaam',mod_q:'Aantal',mod_btn:'Aanmelding bevestigen ✓',
@@ -1070,7 +1104,7 @@ en:{
   aw_t:'Certificate of merit',aw_d:'Awarded by the "Ukraine–World" society for the 150th anniversary of Lesia Ukrainka and the project "Taras Shevchenko Unites Peoples".',
   read_more:'Read more ▾',read_less:'Collapse ▴',
   s_schedule:'Schedule',sch_t:'Classes every Saturday',les:'Lesson',
-  sat_lbl:'Saturdays 2026',leg_v:'Holidays',leg_h:'Public holiday',leg_s:'Special event',leg_n:'School',
+  sat_lbl:'School Saturdays 2026',leg_v:'Holidays',leg_h:'Public holiday',leg_s:'Special event',leg_n:'School',
   s_events:'Events',ev_t:'Upcoming events',ev_d:'Themed celebrations, concerts, workshops and projects — register in advance.',
   evt1:'Celebration',evn1:'Easter Fair',evt2:'Workshop',evn2:'Pysanka: Traditions & Techniques',evt3:'Concert',evn3:'Spring Concert "Blooming Ukraine"',ev_btn:'Register →',
   mod_t:'Event registration',mod_n:'Full name',mod_q:'Number of people',mod_btn:'Confirm registration ✓',
