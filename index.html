@@ -196,10 +196,11 @@ section{padding:80px 4%}
 /* SCHEDULE */
 .schedule{background:var(--crm)}
 .sch-inner{max-width:1060px;margin:0 auto}
-.sch-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;flex-wrap:wrap;gap:16px}
-.sch-flex{display:flex;align-items:flex-start;gap:36px}
-.sch-box{flex:1 1 0;min-width:0}
-.sat-wrap{flex:1 1 0;min-width:0}
+.sch-grid-wrap{display:grid;grid-template-columns:1fr 1fr;column-gap:36px;row-gap:20px}
+.sch-title-l{grid-column:1;grid-row:1}
+.sch-title-r{grid-column:2;grid-row:1;display:flex;align-items:flex-end}
+.sch-box{grid-column:1;grid-row:2;min-width:0}
+.sat-wrap{grid-column:2;grid-row:2;min-width:0}
 .loc-tabs{display:flex;gap:6px;position:relative;z-index:2}
 .loc-tab{flex:1;padding:11px 10px;border:1.5px solid var(--bdr);border-bottom:none;border-radius:12px 12px 0 0;
   background:var(--pch);color:var(--hon);font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;
@@ -215,18 +216,18 @@ section{padding:80px 4%}
 .sch-row:last-child{margin-bottom:0}
 .sch-lbl{font-size:.92rem;color:var(--txt);font-weight:700}
 .sch-rng{font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;color:var(--blu)}
-.sat-panel{background:#fff;border:1.5px solid var(--bdr);border-radius:14px;overflow:hidden;max-height:460px;overflow-y:auto}
+.sat-panel{background:#fff;border:1.5px solid var(--bdr);border-radius:14px;padding:6px 18px}
 .sat-cal{display:flex;flex-direction:column}
-.sat-month{border-bottom:1px solid var(--bdr)}
+.sat-month{padding:10px 0;border-bottom:1px solid var(--crm)}
 .sat-month:last-child{border-bottom:none}
-.sat-month-name{padding:8px 16px;background:var(--crm);font-size:.7rem;font-weight:800;color:var(--mut);
-  text-transform:uppercase;letter-spacing:.06em;position:sticky;top:0}
-.sat-days{display:flex;flex-direction:column}
-.sat-day{display:flex;align-items:center;gap:12px;padding:8px 16px 8px 13px;border-left:4px solid;border-bottom:1px solid var(--crm)}
-.sat-day:last-child{border-bottom:none}
-.sat-day-num{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;
-  justify-content:center;font-size:.76rem;font-weight:800}
-.sat-day-lbl{font-size:.78rem;font-weight:700}
+.sat-month-name{font-size:.7rem;font-weight:800;color:var(--mut);
+  text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.sat-days{display:flex;flex-wrap:wrap;gap:6px}
+.sat-day{width:68px;min-height:44px;flex-shrink:0;border-radius:9px;border:1.5px solid;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 3px;text-align:center}
+.sat-day-num{font-size:.8rem;font-weight:800;line-height:1.1}
+.sat-day-lbl{font-size:.55rem;font-weight:700;line-height:1.15;margin-top:2px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
 .sat-legend{display:flex;gap:14px;margin-top:14px;flex-wrap:wrap}
 .sat-legend span{display:flex;align-items:center;gap:5px;font-size:.75rem;color:var(--mut)}
 .sat-legend i{width:12px;height:12px;border-radius:3px;display:inline-block;border:1.5px solid}
@@ -376,7 +377,11 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
   .nav-langs{display:none}
   .burger{display:flex}
   .lang-toggle{display:block;margin-left:4px}
-  .sch-flex{flex-direction:column;gap:36px}
+  .sch-grid-wrap{display:flex;flex-direction:column;gap:20px}
+  .sch-title-l{order:1}
+  .sch-box{order:2}
+  .sch-title-r{order:3}
+  .sat-wrap{order:4}
   .gal-grid{grid-template-columns:1fr 1fr}
   .gal-item:first-child{grid-column:span 2;grid-row:span 1}
   .ev-grid{grid-template-columns:1fr}
@@ -567,13 +572,14 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
 </section>
 <section class="schedule" id="schedule">
   <div class="sch-inner">
-    <div class="sch-head fu">
-      <div>
+    <div class="sch-grid-wrap">
+      <div class="sch-title-l fu">
         <div class="stag" data-i18n="s_schedule">Розклад</div>
         <h2 class="stitle" data-i18n="sch_t">Заняття щосуботи</h2>
       </div>
-    </div>
-    <div class="sch-flex">
+      <div class="sch-title-r fu">
+        <div class="stag" style="margin-bottom:0" data-i18n="sat_lbl">Навчальні суботи 2026</div>
+      </div>
       <div class="sch-box fu">
         <div class="loc-tabs">
           <button class="loc-tab on" onclick="switchTab(this,'co')">Corbulo College</button>
@@ -596,7 +602,6 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
         </div>
       </div>
       <div class="sat-wrap fu">
-        <div class="stag" style="margin-bottom:13px" data-i18n="sat_lbl">Навчальні суботи 2026</div>
         <div class="sat-panel">
           <div class="sat-cal" id="sat-cal"></div>
         </div>
@@ -1016,12 +1021,13 @@ function renderSaturdays(sats) {
     const daysEl = row.querySelector('.sat-days');
     groups[m].forEach(s => {
       const c = stc[s.t] || stc.n;
-      const label = locCol(s, 'l') || s.l || '';
+      let label = locCol(s, 'l') || s.l || '';
+      if (label.length > 22) label = label.slice(0, 21) + '…';
       const day = s.d.split('/')[0].replace(/^0/,'');
       const el = document.createElement('div');
       el.className = 'sat-day';
-      el.style.borderLeftColor = c.b;
-      el.innerHTML = `<div class="sat-day-num" style="background:${c.bg};color:${c.dc}">${day}</div>` + (label ? `<div class="sat-day-lbl" style="color:${c.lc}">${label}</div>` : '');
+      el.style.cssText = `background:${c.bg};border-color:${c.b}`;
+      el.innerHTML = `<div class="sat-day-num" style="color:${c.dc}">${day}</div>` + (label ? `<div class="sat-day-lbl" style="color:${c.lc}">(${label})</div>` : '');
       daysEl.appendChild(el);
     });
     sc.appendChild(row);
