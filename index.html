@@ -200,13 +200,16 @@ section{padding:80px 4%}
 .loc-tabs{display:flex;gap:6px;position:relative;z-index:2}
 .loc-tab{padding:11px 22px;border:1.5px solid var(--bdr);border-bottom:none;border-radius:12px 12px 0 0;
   background:var(--pch);color:var(--hon);font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;
-  cursor:pointer;transition:.25s}
+  cursor:pointer;transition:background-color .3s ease,color .3s ease,margin-bottom .3s ease,padding-bottom .3s ease,box-shadow .3s ease}
 .loc-tab:hover{color:var(--blu2)}
 .loc-tab.on{background:#fff;color:var(--blu);margin-bottom:-1.5px;padding-bottom:12.5px;box-shadow:0 -4px 10px rgba(0,0,0,.04)}
-.loc-panel{background:#fff;border:1.5px solid var(--bdr);border-radius:0 14px 14px 14px;padding:6px 24px;position:relative;z-index:1}
-.sch-list{padding:2px 0}
-.sch-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--bdr)}
-.sch-row:last-child{border-bottom:none}
+.loc-panel{background:#fff;border:1.5px solid var(--bdr);border-radius:0 14px 14px 14px;padding:18px 24px 20px;position:relative;z-index:1}
+.loc-addr{margin:0 0 14px;color:var(--mut);font-size:.85rem}
+@keyframes schIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.sch-list{padding:2px 0;animation:schIn .35s ease}
+.sch-row{display:flex;align-items:center;gap:26px;width:fit-content;padding:10px 18px;
+  border:1px solid var(--bdr);border-radius:10px;margin-bottom:8px}
+.sch-row:last-child{margin-bottom:0}
 .sch-lbl{font-size:.92rem;color:var(--txt);font-weight:700}
 .sch-rng{font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;color:var(--blu)}
 .sat-cal{display:flex;flex-direction:column;gap:6px;margin-top:18px}
@@ -571,6 +574,7 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
       <button class="loc-tab" onclick="switchTab(this,'fr')">Fransstraat</button>
     </div>
     <div class="loc-panel fu">
+      <p id="loc-disp" class="loc-addr">📍 <strong>Van Tuyll van Serooskerkenstraat 2</strong>, 2273 CB Voorburg</p>
       <div id="co" class="sch-list">
         <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 1</span><span class="sch-rng">11:00 – 11:35</span></div>
         <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 2</span><span class="sch-rng">11:45 – 12:20</span></div>
@@ -584,7 +588,6 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
         <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 4</span><span class="sch-rng">13:45 – 14:20</span></div>
       </div>
     </div>
-    <p id="loc-disp" style="margin-top:16px;color:var(--mut);font-size:.85rem">📍 <strong>Van Tuyll van Serooskerkenstraat 2</strong>, 2273 CB Voorburg</p>
     <div style="margin-top:44px" class="fu">
       <div class="stag" style="margin-bottom:13px" data-i18n="sat_lbl">Навчальні суботи 2026</div>
       <div class="sat-cal" id="sat-cal"></div>
