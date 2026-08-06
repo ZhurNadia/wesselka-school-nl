@@ -269,22 +269,6 @@ section{padding:80px 4%}
 .form-title{font-family:'Nunito',sans-serif;font-size:1.4rem;font-weight:700;color:var(--blu2);margin-bottom:16px}
 .form-note{text-align:center;font-size:.76rem;color:var(--mut);margin-top:12px}
 
-/* GALLERY */
-.gallery{background:var(--crm)}
-.gal-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;flex-wrap:wrap;gap:16px}
-.gal-filters{display:flex;gap:7px;flex-wrap:wrap}
-.fbtn{padding:7px 16px;border:1.5px solid var(--bdr);border-radius:50px;background:#fff;
-  font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;color:var(--mut);cursor:pointer;transition:.2s}
-.fbtn.on,.fbtn:hover{background:var(--blu);color:#fff;border-color:var(--blu)}
-.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.gal-item{border-radius:16px;overflow:hidden;aspect-ratio:4/3;position:relative;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;border:1.5px solid var(--bdr);transition:.3s}
-.gal-item:hover{transform:scale(1.02);box-shadow:var(--shw)}
-.gal-item:first-child{grid-column:span 2;grid-row:span 2}
-.gal-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(82,114,168,.78) 0%,transparent 50%);
-  opacity:0;transition:.3s;display:flex;align-items:flex-end;padding:16px;color:#fff;font-weight:700;font-size:.85rem}
-.gal-item:hover .gal-ov{opacity:1}
-
 /* FAQ */
 .faq{background:#fff}
 .faq-inner{max-width:680px;margin:0 auto}
@@ -390,8 +374,6 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
   .sch-box{order:2}
   .sch-title-r{order:3}
   .sat-wrap{order:4}
-  .gal-grid{grid-template-columns:1fr 1fr}
-  .gal-item:first-child{grid-column:span 2;grid-row:span 1}
   .ev-grid{grid-template-columns:1fr}
   .about-cards{grid-template-columns:1fr}
   .about-mission{grid-template-columns:1fr 1fr}
@@ -399,8 +381,6 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
 }
 @media(max-width:520px){
   section{padding:56px 4%}
-  .gal-grid{grid-template-columns:1fr}
-  .gal-item:first-child{grid-column:span 1;grid-row:span 1}
   .ft-inner{grid-template-columns:1fr}
   .loc-tab{padding:9px 14px;font-size:.78rem}
   .hero h1{font-size:1.85rem}
@@ -453,7 +433,6 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
     <li><a href="#about" data-i18n="nav_about">Про школу</a></li>
     <li><a href="#schedule" data-i18n="nav_schedule">Розклад</a></li>
     <li><a href="#events" data-i18n="nav_events">Заходи</a></li>
-    <li><a href="#gallery" data-i18n="nav_gallery">Фотозвіти</a></li>
     <li><a href="#contact" data-i18n="nav_contact">Контакти</a></li>
     <li><a href="#register" class="nav-cta" data-i18n="nav_cta">Записатись</a></li>
   </ul>
@@ -671,25 +650,6 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
     </div>
   </div>
 </section>
-<section class="gallery" id="gallery">
-  <div style="max-width:1060px;margin:0 auto">
-    <div class="gal-head fu">
-      <div><div class="stag" data-i18n="s_gallery">Фотозвіти</div><h2 class="stitle" data-i18n="gal_t">Наше шкільне життя</h2></div>
-      <div class="gal-filters">
-        <button class="fbtn on" onclick="gf(this)" data-cat="all" data-i18n="ga">Всі</button>
-        <button class="fbtn" onclick="gf(this)" data-cat="Свята" data-i18n="gb">Свята</button>
-        <button class="fbtn" onclick="gf(this)" data-cat="Уроки" data-i18n="gc">Уроки</button>
-        <button class="fbtn" onclick="gf(this)" data-cat="Проекти" data-i18n="gd">Проекти</button>
-      </div>
-    </div>
-    <div class="gal-grid fu" id="gal-grid">
-      <div class="sheet-loading" style="grid-column:1/-1">Завантаження фото...</div>
-    </div>
-    <div style="text-align:center;margin-top:28px" class="fu">
-      <a href="#" class="btn-s" data-i18n="gal_more">Переглянути всі фото →</a>
-    </div>
-  </div>
-</section>
 <section class="faq" id="faq">
   <div class="faq-inner">
     <div class="fu" style="text-align:center">
@@ -753,7 +713,6 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
 </ul></div>
 <div class="ft-col"><h4 data-i18n="ft_act">Активності</h4><ul>
   <li><a href="#events" data-i18n="nav_events">Заходи</a></li>
-  <li><a href="#gallery" data-i18n="nav_gallery">Фотозвіти</a></li>
   <li><a href="#" data-i18n="ft_club">Клуб «Читанка»</a></li>
 </ul></div>
 <div class="ft-col"><h4 data-i18n="s_contact">Контакти</h4><ul>
@@ -928,68 +887,6 @@ async function loadEvents() {
   renderEvents(eventsData);
 }
 
-/* GALLERY FILTER */
-function gf(btn) {
-  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  const cat = btn.dataset.cat;
-  document.querySelectorAll('#gal-grid .gal-item').forEach(item => {
-    item.style.display = (cat === 'all' || item.dataset.cat === cat) ? '' : 'none';
-  });
-}
-
-/* GALLERY — GOOGLE SHEETS */
-const defaultGallery = [
-  {'Назва':'Різдвяний концерт 2024','Категорія':'Свята','Emoji':'🎄','Градієнт':'linear-gradient(135deg,#fde8cc,#f5c842)','big':'1'},
-  {'Назва':'Майстер-клас з писанок','Категорія':'Свята','Emoji':'🎨','Градієнт':'linear-gradient(135deg,#e8f0fe,#7a9ac4)'},
-  {'Назва':'Весняне свято','Категорія':'Свята','Emoji':'🌸','Градієнт':'linear-gradient(135deg,#e8fce8,#5bc88a)'},
-  {'Назва':'День знань','Категорія':'Уроки','Emoji':'📚','Градієнт':'linear-gradient(135deg,#fff0f0,#f06060)'},
-  {'Назва':'Театральна вистава','Категорія':'Проекти','Emoji':'🎭','Градієнт':'linear-gradient(135deg,#f0f0ff,#8080d0)'}
-];
-
-function renderGallery(data) {
-  const grid = document.getElementById('gal-grid');
-  if (!grid) return;
-  grid.innerHTML = '';
-  data.forEach(item => {
-    const name = locCol(item, 'Назва');
-    const photo = item['Фото URL'] || '';
-    const emoji = item['Emoji'] || '📷';
-    const grad = item['Градієнт'] || 'linear-gradient(135deg,#e8f0fe,#7a9ac4)';
-    const div = document.createElement('div');
-    div.className = 'gal-item';
-    div.dataset.cat = item['Категорія'] || '';
-    if (photo) {
-      div.style.cssText = `background-image:url('${photo}');background-size:cover;background-position:center;`;
-    } else {
-      div.style.cssText = `background:${grad};`;
-      const sp = document.createElement('span');
-      sp.style.fontSize = item.big ? '4.5rem' : '2.8rem';
-      sp.textContent = emoji;
-      div.appendChild(sp);
-    }
-    const ov = document.createElement('div');
-    ov.className = 'gal-ov';
-    ov.textContent = name;
-    div.appendChild(ov);
-    grid.appendChild(div);
-  });
-  grid.querySelectorAll('.fu').forEach(el => obs.observe(el));
-}
-
-let galleryData = null;
-async function loadGallery() {
-  try {
-    if (SHEET_ID === 'PLACEHOLDER') throw new Error('No sheet ID');
-    const data = await fetchSheet('Gallery');
-    if (!data.length) throw new Error('No data');
-    galleryData = data;
-  } catch(e) {
-    galleryData = defaultGallery;
-  }
-  renderGallery(galleryData);
-}
-
 /* SATURDAY CALENDAR */
 const defaultSats=[
   {d:'03/01',l:'канікули',t:'v'},{d:'10/01',l:'',t:'n'},{d:'17/01',l:'',t:'n'},
@@ -1081,7 +978,7 @@ async function loadSaturdays() {
 /* I18N */
 const i18n={
 uk:{
-  nav_about:'Про школу',nav_schedule:'Розклад',nav_events:'Заходи',nav_gallery:'Фотозвіти',nav_contact:'Контакти',nav_cta:'Записатись',
+  nav_about:'Про школу',nav_schedule:'Розклад',nav_events:'Заходи',nav_contact:'Контакти',nav_cta:'Записатись',
   hero_badge:'🇺🇦 Діємо з 2011 року · Voorburg, Нідерланди',
   hero_h1:'Де діти ростуть разом<br>з <em>рідною мовою</em>',
   hero_desc:"Українська суботня школа «Веселка» — простір для дітей від 3 до 16 років, де мова, культура та дружба стають частиною кожної суботи.",
@@ -1115,8 +1012,6 @@ uk:{
   form_t:'📝 Форма запису до школи',form_h:'Заповніть форму нижче. Потрібен <strong>Google-акаунт</strong>.',
   form_fb:'Якщо форма не відкривається — <a href="https://docs.google.com/forms/d/e/1FAIpQLSdCvTj-i1em8TG1i6TRbTFkLPWn_iJkTsXED-JwkXd36lNOMQ/viewform" target="_blank" style="color:var(--blu2);font-weight:700">відкрити у новій вкладці</a>',
   form_em:'Або напишіть нам: <a href="mailto:info@oekraienseschool.nl" style="color:var(--blu)">info@oekraienseschool.nl</a>',
-  s_gallery:'Фотозвіти',gal_t:'Наше шкільне життя',ga:'Всі',gb:'Свята',gc:'Уроки',gd:'Проекти',gal_more:'Переглянути всі фото →',
-  gi1:'Різдвяний концерт 2024',gi2:'Майстер-клас з писанок',gi3:'Весняне свято',gi4:'День знань',gi5:'Театральна вистава',
   s_faq:'FAQ',faq_t:'Часті запитання',
   fq1:'Що потрібно для вступу?',fa1:"Заповніть форму або напишіть на info@oekraienseschool.nl. Зв'яжемося протягом 5 днів. Перший пробний день — безкоштовно.",
   fq2:'Скільки учнів у групі?',fa2:'Максимально 18 учнів.',
@@ -1129,7 +1024,7 @@ uk:{
   toast_ok:'Реєстрацію підтверджено!',
 },
 nl:{
-  nav_about:'Over school',nav_schedule:'Rooster',nav_events:'Evenementen',nav_gallery:"Foto's",nav_contact:'Contact',nav_cta:'Aanmelden',
+  nav_about:'Over school',nav_schedule:'Rooster',nav_events:'Evenementen',nav_contact:'Contact',nav_cta:'Aanmelden',
   hero_badge:'🇺🇦 Actief sinds 2011 · Voorburg, Nederland',
   hero_h1:'Kinderen groeien op<br>met hun <em>moedertaal</em>',
   hero_desc:'De Oekraïense zaterdagschool "Wesselka" — een plek voor kinderen van 3 tot 16 jaar, waar taal, cultuur en vriendschap deel worden van elke zaterdag.',
@@ -1163,8 +1058,6 @@ nl:{
   form_t:'📝 Aanmeldformulier',form_h:'Vul het formulier in. Hiervoor is een <strong>Google-account</strong> nodig.',
   form_fb:'Als het formulier niet opent — <a href="https://docs.google.com/forms/d/e/1FAIpQLSdCvTj-i1em8TG1i6TRbTFkLPWn_iJkTsXED-JwkXd36lNOMQ/viewform" target="_blank" style="color:var(--blu2);font-weight:700">openen in nieuw tabblad</a>',
   form_em:'Of schrijf ons: <a href="mailto:info@oekraienseschool.nl" style="color:var(--blu)">info@oekraienseschool.nl</a>',
-  s_gallery:"Foto's",gal_t:'Ons schoolleven',ga:'Alle',gb:'Feesten',gc:'Lessen',gd:'Projecten',gal_more:"Alle foto's →",
-  gi1:'Kerstconcert 2024',gi2:'Pysanka workshop',gi3:'Lentefeest',gi4:'Dag van de kennis',gi5:'Theatervoorstelling',
   s_faq:'FAQ',faq_t:'Veelgestelde vragen',
   fq1:'Hoe aanmelden?',fa1:'Vul het formulier in of mail info@oekraienseschool.nl. We reageren binnen 5 werkdagen. Eerste proefdag gratis.',
   fq2:'Hoeveel leerlingen per groep?',fa2:'Maximaal 18 leerlingen.',
@@ -1177,7 +1070,7 @@ nl:{
   toast_ok:'Aanmelding bevestigd!',
 },
 en:{
-  nav_about:'About',nav_schedule:'Schedule',nav_events:'Events',nav_gallery:'Gallery',nav_contact:'Contact',nav_cta:'Enroll',
+  nav_about:'About',nav_schedule:'Schedule',nav_events:'Events',nav_contact:'Contact',nav_cta:'Enroll',
   hero_badge:'🇺🇦 Active since 2011 · Voorburg, Netherlands',
   hero_h1:'Where children grow<br>with their <em>native language</em>',
   hero_desc:'Ukrainian Saturday School "Veselka" — a space for children aged 3–16, where language, culture and friendship become part of every Saturday.',
@@ -1211,8 +1104,6 @@ en:{
   form_t:'📝 Enrolment Form',form_h:'Fill in the form below. A <strong>Google account</strong> is required.',
   form_fb:'If the form does not load — <a href="https://docs.google.com/forms/d/e/1FAIpQLSdCvTj-i1em8TG1i6TRbTFkLPWn_iJkTsXED-JwkXd36lNOMQ/viewform" target="_blank" style="color:var(--blu2);font-weight:700">open in a new tab</a>',
   form_em:'Or write to us: <a href="mailto:info@oekraienseschool.nl" style="color:var(--blu)">info@oekraienseschool.nl</a>',
-  s_gallery:'Gallery',gal_t:'Our school life',ga:'All',gb:'Celebrations',gc:'Lessons',gd:'Projects',gal_more:'View all photos →',
-  gi1:'Christmas Concert 2024',gi2:'Pysanka workshop',gi3:'Spring celebration',gi4:'Knowledge Day',gi5:'Theatre performance',
   s_faq:'FAQ',faq_t:'Frequently asked questions',
   fq1:'What do I need to enrol?',fa1:'Fill in the form or email info@oekraienseschool.nl. We reply within 5 days. First trial day is free.',
   fq2:'How many students per group?',fa2:'Maximum 18 students.',
@@ -1237,13 +1128,11 @@ function setLang(l){
   document.querySelectorAll('.sch-lbl').forEach((el,i)=>{el.textContent=(t.les||'Урок')+' '+(i%4+1);});
   // Re-render dynamic content for new language
   if(eventsData) renderEvents(eventsData);
-  if(galleryData) renderGallery(galleryData);
   if(satsData) renderSaturdays(satsData);
 }
 
 /* INIT — load dynamic content after i18n is defined */
 loadEvents();
-loadGallery();
 loadSaturdays();
 
 </script>
