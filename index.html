@@ -197,10 +197,11 @@ section{padding:80px 4%}
 .schedule{background:var(--crm)}
 .sch-inner{max-width:1060px;margin:0 auto}
 .sch-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;flex-wrap:wrap;gap:16px}
+.sch-box{max-width:460px}
 .loc-tabs{display:flex;gap:6px;position:relative;z-index:2}
-.loc-tab{padding:11px 22px;border:1.5px solid var(--bdr);border-bottom:none;border-radius:12px 12px 0 0;
+.loc-tab{flex:1;padding:11px 10px;border:1.5px solid var(--bdr);border-bottom:none;border-radius:12px 12px 0 0;
   background:var(--pch);color:var(--hon);font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;
-  cursor:pointer;transition:background-color .3s ease,color .3s ease,margin-bottom .3s ease,padding-bottom .3s ease,box-shadow .3s ease}
+  text-align:center;cursor:pointer;transition:background-color .3s ease,color .3s ease,margin-bottom .3s ease,padding-bottom .3s ease,box-shadow .3s ease}
 .loc-tab:hover{color:var(--blu2)}
 .loc-tab.on{background:#fff;color:var(--blu);margin-bottom:-1.5px;padding-bottom:12.5px;box-shadow:0 -4px 10px rgba(0,0,0,.04)}
 .loc-panel{background:#fff;border:1.5px solid var(--bdr);border-radius:0 14px 14px 14px;padding:18px 24px 20px;position:relative;z-index:1}
@@ -370,6 +371,7 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
   .nav-langs{display:none}
   .burger{display:flex}
   .lang-toggle{display:block;margin-left:4px}
+  .sch-box{max-width:none}
   .gal-grid{grid-template-columns:1fr 1fr}
   .gal-item:first-child{grid-column:span 2;grid-row:span 1}
   .ev-grid{grid-template-columns:1fr}
@@ -569,23 +571,25 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
         <h2 class="stitle" data-i18n="sch_t">Заняття щосуботи</h2>
       </div>
     </div>
-    <div class="loc-tabs fu">
-      <button class="loc-tab on" onclick="switchTab(this,'co')">Corbulo College</button>
-      <button class="loc-tab" onclick="switchTab(this,'fr')">Fransstraat</button>
-    </div>
-    <div class="loc-panel fu">
-      <p id="loc-disp" class="loc-addr">📍 <strong>Van Tuyll van Serooskerkenstraat 2</strong>, 2273 CB Voorburg</p>
-      <div id="co" class="sch-list">
-        <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 1</span><span class="sch-rng">11:00 – 11:35</span></div>
-        <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 2</span><span class="sch-rng">11:45 – 12:20</span></div>
-        <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 3</span><span class="sch-rng">12:40 – 13:15</span></div>
-        <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 4</span><span class="sch-rng">13:25 – 14:00</span></div>
+    <div class="sch-box fu">
+      <div class="loc-tabs">
+        <button class="loc-tab on" onclick="switchTab(this,'co')">Corbulo College</button>
+        <button class="loc-tab" onclick="switchTab(this,'fr')">Fransstraat</button>
       </div>
-      <div id="fr" class="sch-list" style="display:none">
-        <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 1</span><span class="sch-rng">11:20 – 11:55</span></div>
-        <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 2</span><span class="sch-rng">12:05 – 12:40</span></div>
-        <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 3</span><span class="sch-rng">13:00 – 13:35</span></div>
-        <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 4</span><span class="sch-rng">13:45 – 14:20</span></div>
+      <div class="loc-panel">
+        <p id="loc-disp" class="loc-addr">📍 <strong>Van Tuyll van Serooskerkenstraat 2</strong>, 2273 CB Voorburg</p>
+        <div id="co" class="sch-list">
+          <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 1</span><span class="sch-rng">11:00 – 11:35</span></div>
+          <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 2</span><span class="sch-rng">11:45 – 12:20</span></div>
+          <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 3</span><span class="sch-rng">12:40 – 13:15</span></div>
+          <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 4</span><span class="sch-rng">13:25 – 14:00</span></div>
+        </div>
+        <div id="fr" class="sch-list" style="display:none">
+          <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 1</span><span class="sch-rng">11:20 – 11:55</span></div>
+          <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 2</span><span class="sch-rng">12:05 – 12:40</span></div>
+          <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 3</span><span class="sch-rng">13:00 – 13:35</span></div>
+          <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 4</span><span class="sch-rng">13:45 – 14:20</span></div>
+        </div>
       </div>
     </div>
     <div style="margin-top:44px" class="fu">
