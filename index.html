@@ -196,17 +196,19 @@ section{padding:80px 4%}
 /* SCHEDULE */
 .schedule{background:var(--crm)}
 .sch-inner{max-width:1060px;margin:0 auto}
-.sch-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;flex-wrap:wrap;gap:16px}
-.tabs{display:flex;gap:6px;background:var(--pch);padding:5px;border-radius:12px}
-.tab{padding:9px 18px;border-radius:9px;border:none;background:transparent;
-  font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;color:var(--mut);cursor:pointer;transition:.2s}
-.tab.on{background:#fff;color:var(--blu);box-shadow:0 2px 10px rgba(82,114,168,.12)}
-.sch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.sch-item{background:#fff;border-radius:16px;padding:20px;border:1.5px solid var(--bdr);transition:.3s}
-.sch-item:hover{border-color:var(--blu3);box-shadow:var(--sh)}
-.sch-time{font-family:'Nunito',sans-serif;font-size:1.5rem;font-weight:700;color:var(--blu);line-height:1;margin-bottom:6px}
-.sch-lbl{font-size:.74rem;color:var(--mut);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
-.sch-grp{color:var(--hon);font-size:.72rem;font-weight:700}
+.sch-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;flex-wrap:wrap;gap:16px}
+.loc-tabs{display:flex;gap:6px;position:relative;z-index:2}
+.loc-tab{padding:11px 22px;border:1.5px solid var(--bdr);border-bottom:none;border-radius:12px 12px 0 0;
+  background:var(--pch);color:var(--hon);font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;
+  cursor:pointer;transition:.25s}
+.loc-tab:hover{color:var(--blu2)}
+.loc-tab.on{background:#fff;color:var(--blu);margin-bottom:-1.5px;padding-bottom:12.5px;box-shadow:0 -4px 10px rgba(0,0,0,.04)}
+.loc-panel{background:#fff;border:1.5px solid var(--bdr);border-radius:0 14px 14px 14px;padding:6px 24px;position:relative;z-index:1}
+.sch-list{padding:2px 0}
+.sch-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--bdr)}
+.sch-row:last-child{border-bottom:none}
+.sch-lbl{font-size:.92rem;color:var(--txt);font-weight:700}
+.sch-rng{font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;color:var(--blu)}
 .sat-cal{display:flex;flex-direction:column;gap:6px;margin-top:18px}
 .sat-month{display:flex;align-items:stretch;gap:0}
 .sat-month-name{width:90px;flex-shrink:0;font-size:.72rem;font-weight:800;color:var(--mut);
@@ -353,7 +355,6 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
   .con-inner{grid-template-columns:1fr;gap:40px}
   .ft-inner{grid-template-columns:1fr 1fr}
   .ev-grid{grid-template-columns:1fr 1fr}
-  .sch-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
   .nav-links{display:none;position:absolute;top:100%;left:0;right:0;
@@ -378,7 +379,7 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
   .gal-grid{grid-template-columns:1fr}
   .gal-item:first-child{grid-column:span 1;grid-row:span 1}
   .ft-inner{grid-template-columns:1fr}
-  .sch-grid{grid-template-columns:1fr 1fr}
+  .loc-tab{padding:9px 14px;font-size:.78rem}
   .sat-month{flex-direction:column;gap:4px}
   .sat-month-name{width:auto;margin-bottom:2px}
   .sat-day{width:72px}
@@ -564,24 +565,26 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
         <div class="stag" data-i18n="s_schedule">Розклад</div>
         <h2 class="stitle" data-i18n="sch_t">Заняття щосуботи</h2>
       </div>
-      <div class="tabs">
-        <button class="tab on" onclick="switchTab(this,'fr')">Fransstraat</button>
-        <button class="tab" onclick="switchTab(this,'co')">Corbulo College</button>
+    </div>
+    <div class="loc-tabs fu">
+      <button class="loc-tab on" onclick="switchTab(this,'co')">Corbulo College</button>
+      <button class="loc-tab" onclick="switchTab(this,'fr')">Fransstraat</button>
+    </div>
+    <div class="loc-panel fu">
+      <div id="co" class="sch-list">
+        <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 1</span><span class="sch-rng">11:00 – 11:35</span></div>
+        <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 2</span><span class="sch-rng">11:45 – 12:20</span></div>
+        <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 3</span><span class="sch-rng">12:40 – 13:15</span></div>
+        <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 4</span><span class="sch-rng">13:25 – 14:00</span></div>
+      </div>
+      <div id="fr" class="sch-list" style="display:none">
+        <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 1</span><span class="sch-rng">11:20 – 11:55</span></div>
+        <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 2</span><span class="sch-rng">12:05 – 12:40</span></div>
+        <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 3</span><span class="sch-rng">13:00 – 13:35</span></div>
+        <div class="sch-row"><span class="sch-lbl" data-i18n="les">Урок 4</span><span class="sch-rng">13:45 – 14:20</span></div>
       </div>
     </div>
-    <div id="fr" class="sch-grid">
-      <div class="sch-item fu"><div class="sch-lbl" data-i18n="les">Урок 1</div><div class="sch-time">11:20</div><div class="sch-grp">→ 11:55</div></div>
-      <div class="sch-item fu"><div class="sch-lbl" data-i18n="les">Урок 2</div><div class="sch-time">12:05</div><div class="sch-grp">→ 12:40</div></div>
-      <div class="sch-item fu"><div class="sch-lbl" data-i18n="les">Урок 3</div><div class="sch-time">13:00</div><div class="sch-grp">→ 13:35</div></div>
-      <div class="sch-item fu"><div class="sch-lbl" data-i18n="les">Урок 4</div><div class="sch-time">13:45</div><div class="sch-grp">→ 14:20</div></div>
-    </div>
-    <div id="co" class="sch-grid" style="display:none">
-      <div class="sch-item fu"><div class="sch-lbl" data-i18n="les">Урок 1</div><div class="sch-time">11:00</div><div class="sch-grp">→ 11:35</div></div>
-      <div class="sch-item fu"><div class="sch-lbl" data-i18n="les">Урок 2</div><div class="sch-time">11:45</div><div class="sch-grp">→ 12:20</div></div>
-      <div class="sch-item fu"><div class="sch-lbl" data-i18n="les">Урок 3</div><div class="sch-time">12:40</div><div class="sch-grp">→ 13:15</div></div>
-      <div class="sch-item fu"><div class="sch-lbl" data-i18n="les">Урок 4</div><div class="sch-time">13:25</div><div class="sch-grp">→ 14:00</div></div>
-    </div>
-    <p id="loc-disp" style="margin-top:20px;color:var(--mut);font-size:.85rem">📍 <strong>Fransstraat 16</strong>, 2274 AX Voorburg</p>
+    <p id="loc-disp" style="margin-top:16px;color:var(--mut);font-size:.85rem">📍 <strong>Van Tuyll van Serooskerkenstraat 2</strong>, 2273 CB Voorburg</p>
     <div style="margin-top:44px" class="fu">
       <div class="stag" style="margin-bottom:13px" data-i18n="sat_lbl">Навчальні суботи 2026</div>
       <div class="sat-cal" id="sat-cal"></div>
@@ -833,8 +836,8 @@ function switchMap(id){
 /* SCHEDULE TABS */
 const schAddr={fr:'📍 <strong>Fransstraat 16</strong>, 2274 AX Voorburg',co:'📍 <strong>Van Tuyll van Serooskerkenstraat 2</strong>, 2273 CB Voorburg'};
 function switchTab(btn,id){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');
-  ['fr','co'].forEach(t=>{document.getElementById(t).style.display=t===id?'grid':'none';});
+  document.querySelectorAll('.loc-tab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');
+  ['fr','co'].forEach(t=>{document.getElementById(t).style.display=t===id?'block':'none';});
   const el=document.getElementById('loc-disp');if(el)el.innerHTML=schAddr[id];
 }
 
