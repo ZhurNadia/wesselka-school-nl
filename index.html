@@ -230,10 +230,11 @@ section{padding:80px 4%}
 .sat-day-lbl{font-size:.55rem;font-weight:700;line-height:1.15;margin-top:2px;width:100%;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
 .sat-day-lbl-t{display:inline}
+.sat-day.sat-overflow{cursor:pointer}
 @keyframes satMarquee{0%{transform:translateX(66px)}100%{transform:translateX(-100%)}}
-.sat-day:hover .sat-day-lbl,.sat-day.touch-open .sat-day-lbl{
+.sat-day.sat-overflow:hover .sat-day-lbl,.sat-day.sat-overflow.touch-open .sat-day-lbl{
   display:block;-webkit-line-clamp:initial;white-space:nowrap;overflow:hidden}
-.sat-day:hover .sat-day-lbl-t,.sat-day.touch-open .sat-day-lbl-t{
+.sat-day.sat-overflow:hover .sat-day-lbl-t,.sat-day.sat-overflow.touch-open .sat-day-lbl-t{
   display:inline-block;animation:satMarquee 5s linear infinite}
 .sat-legend{display:flex;gap:14px;margin-top:14px;flex-wrap:wrap}
 .sat-legend span{display:flex;align-items:center;gap:5px;font-size:.75rem;color:var(--mut)}
@@ -1028,17 +1029,35 @@ function renderSaturdays(sats) {
     const daysEl = row.querySelector('.sat-days');
     groups[m].forEach(s => {
       const c = stc[s.t] || stc.n;
-      let label = locCol(s, 'l') || s.l || '';
-      if (label.length > 22) label = label.slice(0, 21) + '…';
+      const label = locCol(s, 'l') || s.l || '';
       const day = s.d.split('/')[0].replace(/^0/,'');
       const el = document.createElement('div');
       el.className = 'sat-day';
       el.style.cssText = `background:${c.bg};border-color:${c.b}`;
-      el.innerHTML = `<div class="sat-day-num" style="color:${c.dc}">${day}</div>` + (label ? `<div class="sat-day-lbl" style="color:${c.lc}">${label}</div>` : '');
+      el.innerHTML = `<div class="sat-day-num" style="color:${c.dc}">${day}</div>` + (label ? `<div class="sat-day-lbl" style="color:${c.lc}"><span class="sat-day-lbl-t">${label}</span></div>` : '');
+      if (label) el.addEventListener('click', satTouchToggle);
       daysEl.appendChild(el);
     });
     sc.appendChild(row);
   });
+  requestAnimationFrame(() => {
+    sc.querySelectorAll('.sat-day-lbl').forEach(lbl => {
+      if (lbl.scrollHeight > lbl.clientHeight + 1) {
+        lbl.closest('.sat-day').classList.add('sat-overflow');
+      }
+    });
+  });
+}
+
+function satTouchToggle(e){
+  const el = e.currentTarget;
+  const wasOpen = el.classList.contains('touch-open');
+  document.querySelectorAll('.sat-day.touch-open').forEach(d=>d.classList.remove('touch-open'));
+  clearTimeout(el._satT);
+  if (!wasOpen) {
+    el.classList.add('touch-open');
+    el._satT = setTimeout(()=>el.classList.remove('touch-open'), 5000);
+  }
 }
 
 let satsData = null;
