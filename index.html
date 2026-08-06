@@ -216,18 +216,25 @@ section{padding:80px 4%}
 .sch-row:last-child{margin-bottom:0}
 .sch-lbl{font-size:.92rem;color:var(--txt);font-weight:700}
 .sch-rng{font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;color:var(--blu)}
-.sat-panel{background:#fff;border:1.5px solid var(--bdr);border-radius:14px;padding:6px 18px}
+.sat-panel{background:#fff;border:1.5px solid var(--bdr);border-radius:14px;padding:4px 16px}
 .sat-cal{display:flex;flex-direction:column}
-.sat-month{padding:10px 0;border-bottom:1px solid var(--crm)}
+.sat-month{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--crm)}
 .sat-month:last-child{border-bottom:none}
-.sat-month-name{font-size:.7rem;font-weight:800;color:var(--mut);
-  text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
-.sat-days{display:flex;flex-wrap:wrap;gap:6px}
-.sat-day{width:68px;min-height:44px;flex-shrink:0;border-radius:9px;border:1.5px solid;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 3px;text-align:center}
-.sat-day-num{font-size:.8rem;font-weight:800;line-height:1.1}
-.sat-day-lbl{font-size:.55rem;font-weight:700;line-height:1.15;margin-top:2px;
+.sat-month-name{width:52px;flex-shrink:0;font-size:.66rem;font-weight:800;color:var(--mut);
+  text-transform:uppercase;letter-spacing:.04em;line-height:1.15}
+.sat-days{flex:1;display:flex;flex-wrap:wrap;gap:5px;min-width:0}
+.sat-day{width:74px;height:48px;flex-shrink:0;border-radius:8px;border:1.5px solid;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3px 4px;text-align:center;
+  position:relative;cursor:default}
+.sat-day-num{font-size:.76rem;font-weight:800;line-height:1.1}
+.sat-day-lbl{font-size:.55rem;font-weight:700;line-height:1.15;margin-top:2px;width:100%;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
+.sat-day-lbl-t{display:inline}
+@keyframes satMarquee{0%{transform:translateX(66px)}100%{transform:translateX(-100%)}}
+.sat-day:hover .sat-day-lbl,.sat-day.touch-open .sat-day-lbl{
+  display:block;-webkit-line-clamp:initial;white-space:nowrap;overflow:hidden}
+.sat-day:hover .sat-day-lbl-t,.sat-day.touch-open .sat-day-lbl-t{
+  display:inline-block;animation:satMarquee 5s linear infinite}
 .sat-legend{display:flex;gap:14px;margin-top:14px;flex-wrap:wrap}
 .sat-legend span{display:flex;align-items:center;gap:5px;font-size:.75rem;color:var(--mut)}
 .sat-legend i{width:12px;height:12px;border-radius:3px;display:inline-block;border:1.5px solid}
@@ -607,7 +614,7 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
         </div>
         <div class="sat-legend">
           <span><i style="background:#fde8cc;border-color:#f0b429"></i><span data-i18n="leg_v">Канікули</span></span>
-          <span><i style="background:#e8f0fe;border-color:#7a9ac4"></i><span data-i18n="leg_h">Свято</span></span>
+          <span><i style="background:#fff0f0;border-color:#f06060"></i><span data-i18n="leg_h">Свято (вихідний)</span></span>
           <span><i style="background:#e8fce8;border-color:#2a7e4f"></i><span data-i18n="leg_s">Особлива подія</span></span>
           <span><i style="background:#fff;border-color:var(--bdr)"></i><span data-i18n="leg_n">Навчання</span></span>
         </div>
@@ -994,7 +1001,7 @@ const defaultSats=[
   {d:'30/05',l:'',t:'n'},{d:'06/06',l:'🎉 15 років школі',t:'s'},
   {d:'13/06',l:'',t:'n'},{d:'20/06',l:'',t:'n'},{d:'27/06',l:'',t:'n'},
 ];
-const stc={n:{bg:'#fff',b:'var(--bdr)',dc:'var(--txt)',lc:'var(--mut)'},v:{bg:'#fde8cc',b:'#f0b429',dc:'#a06000',lc:'#c47a00'},h:{bg:'#e8f0fe',b:'#7a9ac4',dc:'#5272a8',lc:'#5272a8'},s:{bg:'#e8fce8',b:'#2a7e4f',dc:'#1a5c30',lc:'#1a5c30'}};
+const stc={n:{bg:'#fff',b:'var(--bdr)',dc:'var(--txt)',lc:'var(--mut)'},v:{bg:'#fde8cc',b:'#f0b429',dc:'#a06000',lc:'#c47a00'},h:{bg:'#fff0f0',b:'#f06060',dc:'#b33a3a',lc:'#b33a3a'},s:{bg:'#e8fce8',b:'#2a7e4f',dc:'#1a5c30',lc:'#1a5c30'}};
 
 const monthNames={
   uk:['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'],
@@ -1027,7 +1034,7 @@ function renderSaturdays(sats) {
       const el = document.createElement('div');
       el.className = 'sat-day';
       el.style.cssText = `background:${c.bg};border-color:${c.b}`;
-      el.innerHTML = `<div class="sat-day-num" style="color:${c.dc}">${day}</div>` + (label ? `<div class="sat-day-lbl" style="color:${c.lc}">(${label})</div>` : '');
+      el.innerHTML = `<div class="sat-day-num" style="color:${c.dc}">${day}</div>` + (label ? `<div class="sat-day-lbl" style="color:${c.lc}">${label}</div>` : '');
       daysEl.appendChild(el);
     });
     sc.appendChild(row);
