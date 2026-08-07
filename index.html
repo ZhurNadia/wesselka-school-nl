@@ -303,6 +303,10 @@ section{padding:80px 4%}
 .map-wrap{border-radius:22px;overflow:hidden;border:1.5px solid var(--bdr);height:420px;background:var(--pch)}
 .map-wrap iframe{width:100%;height:100%;border:none;display:block}
 .map-hint{font-size:.78rem;color:var(--mut);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.consent-gate{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:14px;padding:24px}
+.consent-gate p{font-size:.85rem;color:var(--mut);max-width:320px;line-height:1.6;margin:0}
+.consent-gate-form{height:auto;border:1.5px dashed var(--bdr);border-radius:11px;padding:36px 24px;background:var(--crm)}
 
 /* FOOTER */
 footer{background:var(--blu2);color:rgba(255,255,255,.68);padding:52px 4% 28px}
@@ -326,6 +330,7 @@ footer{background:var(--blu2);color:rgba(255,255,255,.68);padding:52px 4% 28px}
 .toast.show{transform:translateY(0);opacity:1}
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:300;
   align-items:center;justify-content:center;padding:16px}
+#cookie-modal-bg{z-index:401}
 .modal-box{background:#fff;border-radius:22px;padding:32px;max-width:460px;width:100%;position:relative;animation:fadeUp .35s ease}
 .modal-close{position:absolute;top:14px;right:14px;background:var(--pch);border:none;
   width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:.95rem}
@@ -333,6 +338,38 @@ footer{background:var(--blu2);color:rgba(255,255,255,.68);padding:52px 4% 28px}
   font-family:'Nunito',sans-serif;font-size:.9rem;outline:none;transition:.2s;background:var(--crm)}
 .inp:focus{border-color:var(--blu3);background:#fff;box-shadow:0 0 0 3px rgba(74,127,224,.1)}
 label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+
+/* COOKIE CONSENT */
+body.cookie-lock{overflow:hidden}
+.cookie-overlay{position:fixed;inset:0;z-index:399;background:rgba(15,15,25,.62);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease}
+.cookie-overlay.show{opacity:1;visibility:visible}
+.cookie-banner{position:fixed;left:0;right:0;bottom:0;z-index:400;background:#fff;
+  border-top:3px solid var(--yel);box-shadow:0 -14px 50px rgba(0,0,0,.35);
+  padding:26px 4%;transform:translateY(120%);transition:transform .45s cubic-bezier(.34,1.1,.64,1)}
+.cookie-banner.show{transform:translateY(0)}
+.cookie-banner-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;
+  justify-content:space-between;gap:26px;flex-wrap:wrap}
+.cookie-banner-icon{font-size:2.4rem;flex-shrink:0;line-height:1}
+.cookie-banner-body{flex:1 1 360px;max-width:660px}
+.cookie-banner-title{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.05rem;color:var(--blu2);margin-bottom:6px}
+.cookie-banner-inner p{font-size:.87rem;color:var(--mut);line-height:1.6;margin:0}
+.cookie-banner-btns{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0}
+.cookie-banner-btns button{white-space:nowrap;padding:11px 20px;font-size:.85rem}
+.ck-row{border:1.5px solid var(--bdr);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.ck-row-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:8px}
+.ck-row-title{font-weight:800;font-size:.9rem;color:var(--blu2)}
+.ck-row-desc{font-size:.8rem;color:var(--mut);line-height:1.55;margin:0}
+.ck-switch{position:relative;display:inline-block;width:42px;height:24px;flex-shrink:0}
+.ck-switch input{opacity:0;width:0;height:0}
+.ck-slider{position:absolute;cursor:pointer;inset:0;background:var(--bdr);border-radius:24px;transition:.2s}
+.ck-slider::before{content:'';position:absolute;height:18px;width:18px;left:3px;top:3px;
+  background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.ck-switch input:checked+.ck-slider{background:var(--blu)}
+.ck-switch input:checked+.ck-slider::before{transform:translateX(18px)}
+.ck-switch input:disabled+.ck-slider{opacity:.6;cursor:not-allowed}
+.ck-modal-btns{display:flex;justify-content:flex-end;gap:10px;margin-top:18px;flex-wrap:wrap}
 
 /* SCROLL TO TOP */
 .scroll-top{position:fixed;bottom:28px;right:28px;width:46px;height:46px;border-radius:50%;
@@ -646,7 +683,13 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
       <p style="color:var(--mut);font-size:.85rem;margin-bottom:13px" data-i18n="form_h">Заповніть форму нижче. Потрібен <strong>Google-акаунт</strong>.</p>
       <div style="background:var(--pch);border-radius:9px;padding:10px 14px;margin-bottom:16px;font-size:.8rem;color:#8a4e00;display:flex;align-items:center;gap:8px">
         <span>ℹ️</span><span data-i18n="form_fb">Якщо форма не відкривається — <a href="https://docs.google.com/forms/d/e/1FAIpQLSdCvTj-i1em8TG1i6TRbTFkLPWn_iJkTsXED-JwkXd36lNOMQ/viewform" target="_blank" style="color:var(--blu2);font-weight:700">відкрити у новій вкладці</a></span>
-      </div><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdCvTj-i1em8TG1i6TRbTFkLPWn_iJkTsXED-JwkXd36lNOMQ/viewform?embedded=true" width="100%" height="640" frameborder="0" style="border-radius:11px;border:1.5px solid var(--bdr);display:block">Завантаження…</iframe>      <p class="form-note" data-i18n="form_em">Або напишіть нам: <a href="mailto:info@oekraienseschool.nl" style="color:var(--blu)">info@oekraienseschool.nl</a></p>
+      </div>
+      <div class="consent-gate consent-gate-form" id="form-gate">
+        <p data-i18n="ck_gate_form">Форма запису — це вбудований сервіс Google Forms. Щоб її показати, потрібна ваша згода на файли cookie Google-сервісів.</p>
+        <button class="btn-s" onclick="grantGoogleConsent()" data-i18n="ck_gate_btn">Дозволити й показати</button>
+      </div>
+      <iframe id="form-iframe" data-src="https://docs.google.com/forms/d/e/1FAIpQLSdCvTj-i1em8TG1i6TRbTFkLPWn_iJkTsXED-JwkXd36lNOMQ/viewform?embedded=true" width="100%" height="640" frameborder="0" style="border-radius:11px;border:1.5px solid var(--bdr);display:none">Завантаження…</iframe>
+      <p class="form-note" data-i18n="form_em">Або напишіть нам: <a href="mailto:info@oekraienseschool.nl" style="color:var(--blu)">info@oekraienseschool.nl</a></p>
     </div>
   </div>
 </section>
@@ -689,7 +732,11 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
     <div class="fu">
       <p class="map-hint" data-i18n="map_hint">👆 Натисніть на локацію зліва, щоб побачити на карті</p>
       <div class="map-wrap">
-        <iframe id="map-iframe" src="https://www.google.com/maps?q=Fransstraat+16,+2274+AX+Voorburg,+Netherlands&output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe id="map-iframe" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="display:none"></iframe>
+        <div class="consent-gate" id="map-gate">
+          <p data-i18n="ck_gate_map">Карта — це сервіс Google. Щоб її показати, потрібна ваша згода на файли cookie Google-сервісів.</p>
+          <button class="btn-s" onclick="grantGoogleConsent()" data-i18n="ck_gate_btn">Дозволити й показати</button>
+        </div>
       </div>
       <p id="map-addr" style="margin-top:11px;font-size:.82rem;color:var(--mut)">📍 Fransstraat 16, 2274 AX Voorburg</p>
     </div>
@@ -722,13 +769,121 @@ label.lbl{display:block;font-size:.76rem;font-weight:800;color:var(--mut);text-t
 </div>
 <div class="ft-bot">
   <span data-i18n="ft_copy">© 2026 Oekraïense school Wesselka</span>
+  <a href="#" onclick="openCookiePrefs();return false;" style="color:rgba(255,255,255,.58);text-decoration:underline" data-i18n="ck_settings_link">Налаштування cookies</a>
   <span data-i18n="ft_made">Зроблено з ❤️ для дітей</span>
 </div>
 </footer>
+
+<div class="cookie-overlay" id="cookie-overlay"></div>
+<div class="cookie-banner" id="cookie-banner">
+  <div class="cookie-banner-inner">
+    <div class="cookie-banner-icon">🍪</div>
+    <div class="cookie-banner-body">
+      <div class="cookie-banner-title" data-i18n="ck_banner_title">Ми поважаємо вашу приватність</div>
+      <p data-i18n="ck_banner_text">Ми використовуємо необхідні файли cookie для роботи сайту, а також вбудовані сервіси Google (Карти та Google Forms) для показу карти школи й форми запису — вони встановлюють власні cookie лише за вашою згодою. Свій вибір можна змінити будь-коли внизу сторінки.</p>
+    </div>
+    <div class="cookie-banner-btns">
+      <button class="btn-s" onclick="openCookiePrefs()" data-i18n="ck_customize">Налаштувати</button>
+      <button class="btn-s" onclick="cookieRejectAll()" data-i18n="ck_reject">Лише необхідні</button>
+      <button class="btn-p" onclick="cookieAcceptAll()" data-i18n="ck_accept">Прийняти всі</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="cookie-modal-bg" onclick="closeCookiePrefs(event)">
+  <div class="modal-box" style="max-width:520px">
+    <button class="modal-close" onclick="closeCookiePrefs()">×</button>
+    <h3 style="font-family:'Nunito',sans-serif;font-size:1.2rem;color:var(--blu2);margin-bottom:10px" data-i18n="ck_modal_t">Налаштування конфіденційності</h3>
+    <p style="color:var(--mut);font-size:.83rem;line-height:1.65;margin-bottom:18px" data-i18n="ck_modal_intro">Файли cookie — невеликі текстові файли, які веб-сайт може зберігати на вашому пристрої. Закон дозволяє нам зберігати ті, що абсолютно необхідні для роботи сайту, без окремого дозволу. Для решти — потрібна ваша згода. Нижче можна обрати, що дозволити; свій вибір можна змінити будь-коли через посилання «Налаштування cookies» внизу сторінки.</p>
+
+    <div class="ck-row">
+      <div class="ck-row-head">
+        <span class="ck-row-title" data-i18n="ck_necessary_t">Необхідні</span>
+        <label class="ck-switch"><input type="checkbox" checked disabled><span class="ck-slider"></span></label>
+      </div>
+      <p class="ck-row-desc" data-i18n="ck_necessary_d">Потрібні для базової роботи сайту — зокрема, щоб запам'ятати ваш вибір щодо cookies. Без них сайт не працюватиме коректно, тому вимкнути їх не можна.</p>
+    </div>
+
+    <div class="ck-row">
+      <div class="ck-row-head">
+        <span class="ck-row-title" data-i18n="ck_google_t">Сервіси Google (Карта, форма запису)</span>
+        <label class="ck-switch"><input type="checkbox" id="ck-google-toggle"><span class="ck-slider"></span></label>
+      </div>
+      <p class="ck-row-desc" data-i18n="ck_google_d">Google Maps показує розташування школи, а Google Forms — вбудовану форму запису до школи. Обидва сервіси надає компанія Google, яка може встановлювати власні файли cookie й обробляти дані згідно зі своєю політикою конфіденційності. Без згоди карту й форму можна буде відкрити окремим посиланням.</p>
+    </div>
+
+    <div class="ck-modal-btns">
+      <button class="btn-s" onclick="cookieRejectAll()" data-i18n="ck_reject">Лише необхідні</button>
+      <button class="btn-p" onclick="cookieSavePrefs()" data-i18n="ck_save">Зберегти вибір</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast">✅ <span id="toast-msg"></span></div>
 <script>
 /* ── GLOBAL STATE ── */
 let lang = 'uk';
+
+/* ── COOKIE CONSENT ── */
+const CK_KEY = 'wesselkaCookieConsent';
+function getCookieConsent(){
+  try { return JSON.parse(localStorage.getItem(CK_KEY)); } catch(e){ return null; }
+}
+function hasGoogleConsent(){
+  const c = getCookieConsent();
+  return !!(c && c.google);
+}
+function loadGoogleEmbeds(){
+  const mapIf = document.getElementById('map-iframe');
+  const mapGate = document.getElementById('map-gate');
+  if (mapIf) { mapIf.src = mapURLs[pendingMapId]; mapIf.style.display = 'block'; }
+  if (mapGate) mapGate.style.display = 'none';
+  const formIf = document.getElementById('form-iframe');
+  const formGate = document.getElementById('form-gate');
+  if (formIf && !formIf.src) { formIf.src = formIf.dataset.src; formIf.style.display = 'block'; }
+  if (formGate) formGate.style.display = 'none';
+}
+function saveCookieConsent(google){
+  const consent = { necessary:true, google:!!google, ts:Date.now() };
+  try { localStorage.setItem(CK_KEY, JSON.stringify(consent)); } catch(e){}
+  const banner = document.getElementById('cookie-banner');
+  if (banner) banner.classList.remove('show');
+  const overlay = document.getElementById('cookie-overlay');
+  if (overlay) overlay.classList.remove('show');
+  document.body.classList.remove('cookie-lock');
+  closeCookiePrefs();
+  if (google) loadGoogleEmbeds();
+}
+function cookieAcceptAll(){ saveCookieConsent(true); }
+function cookieRejectAll(){ saveCookieConsent(false); }
+function cookieSavePrefs(){
+  const t = document.getElementById('ck-google-toggle');
+  saveCookieConsent(t ? t.checked : false);
+}
+function grantGoogleConsent(){ saveCookieConsent(true); }
+function openCookiePrefs(){
+  const c = getCookieConsent();
+  const t = document.getElementById('ck-google-toggle');
+  if (t) t.checked = !!(c && c.google);
+  const bg = document.getElementById('cookie-modal-bg');
+  if (bg) bg.style.display = 'flex';
+}
+function closeCookiePrefs(e){
+  const bg = document.getElementById('cookie-modal-bg');
+  if (bg && (!e || e.target === bg)) bg.style.display = 'none';
+}
+function initCookieConsent(){
+  const c = getCookieConsent();
+  if (!c) {
+    const banner = document.getElementById('cookie-banner');
+    if (banner) banner.classList.add('show');
+    const overlay = document.getElementById('cookie-overlay');
+    if (overlay) overlay.classList.add('show');
+    document.body.classList.add('cookie-lock');
+  } else if (c.google) {
+    loadGoogleEmbeds();
+  }
+}
 
 /* ── GOOGLE SHEETS CONFIG ── */
 const SHEET_ID = 'PLACEHOLDER'; // Replace with your Google Sheet ID
@@ -810,10 +965,12 @@ const mapURLs={
   fr:'https://www.google.com/maps?q=Fransstraat+16,+2274+AX+Voorburg,+Netherlands&output=embed',
   co:'https://www.google.com/maps?q=Van+Tuyll+van+Serooskerkenstraat+2,+2273+CB+Voorburg,+Netherlands&output=embed'
 };
+let pendingMapId='fr';
 function switchMap(id){
   document.querySelectorAll('.cc.loc').forEach(c=>c.classList.remove('active'));
   document.getElementById('cc-'+id).classList.add('active');
-  document.getElementById('map-iframe').src=mapURLs[id];
+  pendingMapId=id;
+  if(hasGoogleConsent())document.getElementById('map-iframe').src=mapURLs[id];
   const addr=id==='fr'?'📍 Fransstraat 16, 2274 AX Voorburg':'📍 Van Tuyll van Serooskerkenstraat 2, 2273 CB Voorburg';
   document.getElementById('map-addr').textContent=addr;
 }
@@ -1022,6 +1179,18 @@ uk:{
   map_hint:'👆 Натисніть на локацію зліва, щоб побачити на карті',
   ft_d:'Українська суботня школа у Voorburg. Працюємо з 2011 року.',ft_sch:'Школа',ft_act:'Активності',ft_club:"Клуб «Читанка»",ft_adr:'Адреси шкіл',ft_copy:'© 2026 Oekraïense school Wesselka',ft_made:'Зроблено з ❤️ для дітей',
   toast_ok:'Реєстрацію підтверджено!',
+  ck_banner_title:'Ми поважаємо вашу приватність',
+  ck_banner_text:'Ми використовуємо необхідні файли cookie для роботи сайту, а також вбудовані сервіси Google (Карти та Google Forms) для показу карти школи й форми запису — вони встановлюють власні cookie лише за вашою згодою. Свій вибір можна змінити будь-коли внизу сторінки.',
+  ck_customize:'Налаштувати',ck_reject:'Лише необхідні',ck_accept:'Прийняти всі',ck_save:'Зберегти вибір',ck_settings_link:'Налаштування cookies',
+  ck_modal_t:'Налаштування конфіденційності',
+  ck_modal_intro:'Файли cookie — невеликі текстові файли, які веб-сайт може зберігати на вашому пристрої. Закон дозволяє нам зберігати ті, що абсолютно необхідні для роботи сайту, без окремого дозволу. Для решти — потрібна ваша згода. Нижче можна обрати, що дозволити; свій вибір можна змінити будь-коли через посилання «Налаштування cookies» внизу сторінки.',
+  ck_necessary_t:'Необхідні',
+  ck_necessary_d:"Потрібні для базової роботи сайту — зокрема, щоб запам'ятати ваш вибір щодо cookies. Без них сайт не працюватиме коректно, тому вимкнути їх не можна.",
+  ck_google_t:'Сервіси Google (Карта, форма запису)',
+  ck_google_d:'Google Maps показує розташування школи, а Google Forms — вбудовану форму запису до школи. Обидва сервіси надає компанія Google, яка може встановлювати власні файли cookie й обробляти дані згідно зі своєю політикою конфіденційності. Без згоди карту й форму можна буде відкрити окремим посиланням.',
+  ck_gate_map:'Карта — це сервіс Google. Щоб її показати, потрібна ваша згода на файли cookie Google-сервісів.',
+  ck_gate_form:'Форма запису — це вбудований сервіс Google Forms. Щоб її показати, потрібна ваша згода на файли cookie Google-сервісів.',
+  ck_gate_btn:'Дозволити й показати',
 },
 nl:{
   nav_about:'Over school',nav_schedule:'Rooster',nav_events:'Evenementen',nav_contact:'Contact',nav_cta:'Aanmelden',
@@ -1068,6 +1237,18 @@ nl:{
   map_hint:'👆 Klik op een locatie links om die op de kaart te zien',
   ft_d:'Oekraïense zaterdagschool in Voorburg. Actief sinds 2011.',ft_sch:'School',ft_act:'Activiteiten',ft_club:'Club "Chytanka"',ft_adr:'Schooladressen',ft_copy:'© 2026 Oekraïense school Wesselka',ft_made:'Gemaakt met ❤️ voor kinderen',
   toast_ok:'Aanmelding bevestigd!',
+  ck_banner_title:'Wij respecteren uw privacy',
+  ck_banner_text:'We gebruiken noodzakelijke cookies voor de werking van de site, en ingesloten Google-diensten (Maps en Google Forms) om de schoolkaart en het aanmeldformulier te tonen — deze plaatsen alleen eigen cookies met uw toestemming. U kunt uw keuze altijd wijzigen onderaan de pagina.',
+  ck_customize:'Aanpassen',ck_reject:'Alleen noodzakelijk',ck_accept:'Alles accepteren',ck_save:'Keuze opslaan',ck_settings_link:'Cookie-instellingen',
+  ck_modal_t:'Privacyvoorkeuren',
+  ck_modal_intro:'Cookies zijn kleine tekstbestanden die een website op uw apparaat kan opslaan. De wet staat ons toe cookies te bewaren die strikt noodzakelijk zijn voor de werking van de site, zonder aparte toestemming. Voor de overige cookies hebben we uw toestemming nodig. Hieronder kunt u kiezen wat u toestaat; u kunt uw keuze altijd wijzigen via de link "Cookie-instellingen" onderaan de pagina.',
+  ck_necessary_t:'Noodzakelijk',
+  ck_necessary_d:'Nodig voor de basiswerking van de site — onder andere om uw cookiekeuze te onthouden. Zonder deze werkt de site niet correct, daarom kunnen ze niet worden uitgeschakeld.',
+  ck_google_t:'Google-diensten (kaart, aanmeldformulier)',
+  ck_google_d:'Google Maps toont de locatie van de school, Google Forms is het ingesloten aanmeldformulier. Beide diensten worden geleverd door Google, dat eigen cookies kan plaatsen en gegevens kan verwerken volgens zijn eigen privacybeleid. Zonder toestemming kunt u de kaart en het formulier via een aparte link openen.',
+  ck_gate_map:'De kaart is een Google-dienst. Om deze te tonen hebben we uw toestemming voor cookies van Google-diensten nodig.',
+  ck_gate_form:'Het aanmeldformulier is een ingesloten Google Forms-dienst. Om dit te tonen hebben we uw toestemming voor cookies van Google-diensten nodig.',
+  ck_gate_btn:'Toestaan en tonen',
 },
 en:{
   nav_about:'About',nav_schedule:'Schedule',nav_events:'Events',nav_contact:'Contact',nav_cta:'Enroll',
@@ -1114,6 +1295,18 @@ en:{
   map_hint:'👆 Click a location on the left to see it on the map',
   ft_d:'Ukrainian Saturday School in Voorburg. Active since 2011.',ft_sch:'School',ft_act:'Activities',ft_club:'"Chytanka" Book Club',ft_adr:'School addresses',ft_copy:'© 2026 Oekraïense school Wesselka',ft_made:'Made with ❤️ for children',
   toast_ok:'Registration confirmed!',
+  ck_banner_title:'We respect your privacy',
+  ck_banner_text:'We use necessary cookies for the site to work, plus embedded Google services (Maps and Google Forms) to show the school map and enrollment form — these only set their own cookies with your consent. You can change your choice anytime at the bottom of the page.',
+  ck_customize:'Customize',ck_reject:'Necessary only',ck_accept:'Accept all',ck_save:'Save choice',ck_settings_link:'Cookie settings',
+  ck_modal_t:'Privacy preferences',
+  ck_modal_intro:"Cookies are small text files a website can store on your device. The law allows us to store cookies that are strictly necessary for the site to function without separate permission. For all other cookies we need your consent. Below you can choose what to allow; you can change your choice anytime via the \"Cookie settings\" link at the bottom of the page.",
+  ck_necessary_t:'Necessary',
+  ck_necessary_d:"Needed for the site's basic operation — including remembering your cookie choice. Without them the site won't work correctly, so they can't be turned off.",
+  ck_google_t:'Google services (map, enrollment form)',
+  ck_google_d:"Google Maps shows the school's location, Google Forms is the embedded enrollment form. Both services are provided by Google, which may set its own cookies and process data under its own privacy policy. Without consent, you can still open the map and form via a separate link.",
+  ck_gate_map:'The map is a Google service. To show it we need your consent for Google services cookies.',
+  ck_gate_form:'The enrollment form is an embedded Google Forms service. To show it we need your consent for Google services cookies.',
+  ck_gate_btn:'Allow and show',
 }
 };
 
@@ -1134,6 +1327,7 @@ function setLang(l){
 /* INIT — load dynamic content after i18n is defined */
 loadEvents();
 loadSaturdays();
+initCookieConsent();
 
 </script>
 <button id="scroll-top" class="scroll-top" aria-label="Scroll to top">↑</button>
