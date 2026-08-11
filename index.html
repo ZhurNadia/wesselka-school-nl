@@ -262,6 +262,21 @@ section{padding:80px 4%}
 .faq-item.open .faq-a{max-height:260px}
 .faq-ai{padding-bottom:20px;color:var(--mut);line-height:1.7;font-size:.93rem}
 
+/* DONATE */
+.donate{background:#fff}
+.donate-inner{max-width:720px;margin:0 auto;text-align:center}
+.donate-text{font-size:1rem;color:var(--mut);line-height:1.75;max-width:640px;margin:18px auto 0;text-align:left}
+.donate-thanks{margin:18px 0 0;font-weight:500;color:var(--blu2)}
+.donate-methods-label{margin-top:38px;font-size:.95rem;font-weight:500;color:var(--txt)}
+.donate-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;text-align:left}
+.dn-card{background:var(--crm);border:1.5px solid var(--bdr);border-radius:18px;padding:24px;display:flex;flex-direction:column}
+.dn-card h3{font-family:'Exo 2',sans-serif;font-size:1rem;font-weight:500;color:var(--blu2);margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.dn-card p{font-size:.88rem;color:var(--mut);line-height:1.6;margin-bottom:16px}
+.dn-card .btn-p,.dn-card .btn-s{align-self:flex-start;margin-top:auto}
+.dn-soon{font-size:.65rem;font-weight:700;color:var(--hon);background:var(--pch);padding:3px 9px;
+  border-radius:20px;text-transform:uppercase;letter-spacing:.03em}
+.dn-btn-disabled{opacity:.55;cursor:not-allowed;pointer-events:none}
+
 /* CONTACT — no map tabs, click on card changes map */
 .contact{background:var(--crm)}
 .con-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:52px;align-items:start}
@@ -389,6 +404,7 @@ body.cookie-lock{overflow:hidden}
   .sch-title-r{order:3}
   .sat-wrap{order:4}
   .ev-grid{grid-template-columns:1fr}
+  .donate-cards{grid-template-columns:1fr}
   .about-cards{grid-template-columns:1fr}
   .about-mission{grid-template-columns:1fr 1fr}
   .ac.accent{grid-column:span 1}
@@ -448,6 +464,7 @@ body.cookie-lock{overflow:hidden}
     <li><a href="#schedule" data-i18n="nav_schedule">Розклад</a></li>
     <li><a href="#events" data-i18n="nav_events">Заходи</a></li>
     <li><a href="#contact" data-i18n="nav_contact">Контакти</a></li>
+    <li><a href="#donate" data-i18n="nav_donate">Донат</a></li>
     <li><a href="#register" class="nav-cta" data-i18n="nav_cta">Записатись</a></li>
   </ul>
   <div class="nav-langs">
@@ -708,6 +725,29 @@ body.cookie-lock{overflow:hidden}
         </div>
       </div>
       <p id="map-addr" style="margin-top:11px;font-size:.82rem;color:var(--mut)">📍 Fransstraat 16, 2274 AX Voorburg</p>
+    </div>
+  </div>
+</section>
+<section class="donate" id="donate">
+  <div class="donate-inner">
+    <div class="fu" style="text-align:center">
+      <div class="stag" style="justify-content:center" data-i18n="don_tag">Підтримка</div>
+      <h2 class="stitle" data-i18n="don_t">Підтримайте школу «Веселка»</h2>
+    </div>
+    <p class="donate-text fu" data-i18n="don_text">Українська школа «Веселка» у Ворбурзі інвестує в майбутнє України — її мову та культуру.<br><br>Наші учні зростають вільними, творчими, суспільно свідомими і пишаються своєю спадщиною. Поки в Україні триває війна, ми робимо все можливе, щоб прийняти до громади кожну українську родину, вимушену покинути дім, і надати знижки тим, хто цього потребує.<br><br>Завдяки вашій підтримці ми можемо продовжувати якісну освіту та передавати культурну спадщину далі.</p>
+    <p class="donate-thanks fu" data-i18n="don_thanks">Щиро дякуємо за підтримку! 💙💛</p>
+    <p class="donate-methods-label fu" data-i18n="don_methods">Ви можете підтримати нас одним із цих способів:</p>
+    <div class="donate-cards fu">
+      <div class="dn-card">
+        <h3>💳 <span data-i18n="don_ideal_t">Оплата через iDEAL</span><span class="dn-soon" data-i18n="don_soon">Незабаром</span></h3>
+        <p data-i18n="don_ideal_d">Швидкий і зручний платіж через сервіс Betaalverzoek (iDEAL).</p>
+        <a href="#" class="btn-p dn-btn-disabled" onclick="return false;" data-i18n="don_ideal_btn">Сплатити донат</a>
+      </div>
+      <div class="dn-card">
+        <h3>🏦 <span data-i18n="don_bank_t">Банківські реквізити</span></h3>
+        <p data-i18n="don_bank_d">Готуємо реквізити для прямого переказу. А поки — напишіть нам, і ми надішлемо їх особисто:</p>
+        <a href="mailto:info@oekraienseschool.nl" class="btn-s">info@oekraienseschool.nl</a>
+      </div>
     </div>
   </div>
 </section>
@@ -1147,6 +1187,13 @@ uk:{
   s_contact:'Контакти',con_t:"Зв'яжіться з нами",l1:'Локація Fransstraat',l2:'Локація Corbulo College',con_em:'Email',con_sm:'Соціальні мережі',
   map_hint:'👆 Натисніть на локацію зліва, щоб побачити на карті',
   ft_d:'Українська суботня школа у Voorburg. Працюємо з 2011 року.',ft_sch:'Школа',ft_act:'Активності',ft_club:"Клуб «Читанка»",ft_adr:'Адреси шкіл',ft_copy:'© 2026 Oekraïense school Wesselka',ft_made:'Зроблено з ❤️ для дітей',
+  nav_donate:'Донат',
+  don_tag:'Підтримка',don_t:'Підтримайте школу «Веселка»',
+  don_text:'Українська школа «Веселка» у Ворбурзі інвестує в майбутнє України — її мову та культуру.<br><br>Наші учні зростають вільними, творчими, суспільно свідомими і пишаються своєю спадщиною. Поки в Україні триває війна, ми робимо все можливе, щоб прийняти до громади кожну українську родину, вимушену покинути дім, і надати знижки тим, хто цього потребує.<br><br>Завдяки вашій підтримці ми можемо продовжувати якісну освіту та передавати культурну спадщину далі.',
+  don_thanks:'Щиро дякуємо за підтримку! 💙💛',
+  don_methods:'Ви можете підтримати нас одним із цих способів:',
+  don_ideal_t:'Оплата через iDEAL',don_ideal_d:'Швидкий і зручний платіж через сервіс Betaalverzoek (iDEAL).',don_ideal_btn:'Сплатити донат',don_soon:'Незабаром',
+  don_bank_t:'Банківські реквізити',don_bank_d:'Готуємо реквізити для прямого переказу. А поки — напишіть нам, і ми надішлемо їх особисто:',
   toast_ok:'Реєстрацію підтверджено!',
   ck_banner_title:'Ми поважаємо вашу приватність',
   ck_banner_text:'Ми використовуємо необхідні файли cookie для роботи сайту, а також вбудовані сервіси Google (Карти та Google Forms) для показу карти школи й форми запису — вони встановлюють власні cookie лише за вашою згодою. Свій вибір можна змінити будь-коли внизу сторінки.',
@@ -1205,6 +1252,13 @@ nl:{
   s_contact:'Contact',con_t:'Neem contact op',l1:'Locatie Fransstraat',l2:'Locatie Corbulo College',con_em:'E-mail',con_sm:'Sociale media',
   map_hint:'👆 Klik op een locatie links om die op de kaart te zien',
   ft_d:'Oekraïense zaterdagschool in Voorburg. Actief sinds 2011.',ft_sch:'School',ft_act:'Activiteiten',ft_club:'Club "Chytanka"',ft_adr:'Schooladressen',ft_copy:'© 2026 Oekraïense school Wesselka',ft_made:'Gemaakt met ❤️ voor kinderen',
+  nav_donate:'Doneren',
+  don_tag:'Steun ons',don_t:'Steun school "Wesselka"',
+  don_text:'De Oekraïense school "Wesselka" in Voorburg investeert in de toekomst van Oekraïne — de taal en cultuur van ons land.<br><br>Onze leerlingen groeien op vrij, creatief en maatschappelijk bewust, en zijn trots op hun erfgoed. Zolang de oorlog in Oekraïne voortduurt, doen we er alles aan om elk Oekraïens gezin dat gedwongen huis en haard heeft moeten verlaten te verwelkomen, met korting waar nodig.<br><br>Dankzij uw steun kunnen we kwalitatief onderwijs blijven bieden en het culturele erfgoed doorgeven.',
+  don_thanks:'Hartelijk dank voor uw steun! 💙💛',
+  don_methods:'U kunt ons op een van de volgende manieren steunen:',
+  don_ideal_t:'Betalen via iDEAL',don_ideal_d:'Snel en eenvoudig betalen via een Betaalverzoek (iDEAL).',don_ideal_btn:'Doneer nu',don_soon:'Binnenkort',
+  don_bank_t:'Bankgegevens',don_bank_d:'We bereiden de gegevens voor een directe overschrijving voor. Mail ons ondertussen gerust, dan sturen we ze persoonlijk:',
   toast_ok:'Aanmelding bevestigd!',
   ck_banner_title:'Wij respecteren uw privacy',
   ck_banner_text:'We gebruiken noodzakelijke cookies voor de werking van de site, en ingesloten Google-diensten (Maps en Google Forms) om de schoolkaart en het aanmeldformulier te tonen — deze plaatsen alleen eigen cookies met uw toestemming. U kunt uw keuze altijd wijzigen onderaan de pagina.',
@@ -1263,6 +1317,13 @@ en:{
   s_contact:'Contact',con_t:'Get in touch',l1:'Location Fransstraat',l2:'Location Corbulo College',con_em:'Email',con_sm:'Social media',
   map_hint:'👆 Click a location on the left to see it on the map',
   ft_d:'Ukrainian Saturday School in Voorburg. Active since 2011.',ft_sch:'School',ft_act:'Activities',ft_club:'"Chytanka" Book Club',ft_adr:'School addresses',ft_copy:'© 2026 Oekraïense school Wesselka',ft_made:'Made with ❤️ for children',
+  nav_donate:'Donate',
+  don_tag:'Support us',don_t:'Support school "Wesselka"',
+  don_text:"Ukrainian school 'Wesselka' in Voorburg invests in Ukraine's future — its language and culture.<br><br>Our students grow up free, creative and socially aware, proud of their heritage. While the war in Ukraine continues, we do everything we can to welcome every Ukrainian family forced to leave home, offering discounts wherever needed.<br><br>Thanks to your support, we can keep providing quality education and pass on our cultural heritage.",
+  don_thanks:'Thank you so much for your support! 💙💛',
+  don_methods:'You can support us using one of these payment methods:',
+  don_ideal_t:'Pay via iDEAL',don_ideal_d:'Quick and easy payment via a Betaalverzoek (iDEAL) request.',don_ideal_btn:'Donate now',don_soon:'Coming soon',
+  don_bank_t:'Bank details',don_bank_d:"We're preparing details for a direct bank transfer. In the meantime, email us and we'll send them personally:",
   toast_ok:'Registration confirmed!',
   ck_banner_title:'We respect your privacy',
   ck_banner_text:'We use necessary cookies for the site to work, plus embedded Google services (Maps and Google Forms) to show the school map and enrollment form — these only set their own cookies with your consent. You can change your choice anytime at the bottom of the page.',
